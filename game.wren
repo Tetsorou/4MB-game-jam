@@ -10,7 +10,7 @@ class Game {
         
     }
     static tick(dt) {
-        Draw.clear
+        Draw.clear()
         Surface.draw(surface, 0, 0)
     }
 }
