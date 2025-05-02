@@ -11,6 +11,6 @@ class Game {
     }
     static tick(dt) {
         Draw.clear()
-        Surface.draw(guy, 0, 0)
+        Surface.draw(guy, 0, 0,1)
     }
 }
