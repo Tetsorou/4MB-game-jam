@@ -1,7 +1,7 @@
 var WIDTH = 320
 var HEIGHT = 120
 var TITLE= "4MB-game-jam"
-var surface = Surface.new_from_png("Soldier1.png")
+var guy = Surface.new_from_png("Soldier1.png")
 
 class Game {
     static init(args) {
@@ -11,6 +11,6 @@ class Game {
     }
     static tick(dt) {
         Draw.clear()
-        Surface.draw(surface, 0, 0)
+        Surface.draw(guy, 0, 0)
     }
 }
