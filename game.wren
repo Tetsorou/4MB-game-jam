@@ -5,7 +5,8 @@ class Game {
     static init(args) {
         Engine.init(WIDTH,HEIGHT,TITLE)
         Draw.clear()
-        System.print(Engine.get_os())
+        var surface = Surface.new_from_png("Soldier1.png")
+        Surface.draw(surface, 0, 0)
     }
     static tick(dt) {
         
