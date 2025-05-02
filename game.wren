@@ -21,11 +21,11 @@ class Game {
             System.print(GUY_X)
         }
         if (Input.is_key_held(Input.get_keycode("W"))) {
-            GUY_X = GUY_Y + 0.1
+            GUY_Y = GUY_Y + 0.1
             System.print(GUY_Y)
         }
         if (Input.is_key_held(Input.get_keycode("S"))) {
-            GUY_X = GUY_X - 0.1
+            GUY_Y = GUY_X - 0.1
             System.print(GUY_Y)
         }
     }
