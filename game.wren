@@ -15,13 +15,16 @@ class Game {
         if (Input.is_key_held(Input.get_keycode("A"))) {
             GUY_X = GUY_X - 0.5
             System.print(GUY_X)
-        }if (Input.is_key_held(Input.get_keycode("D"))) {
+        }
+        if (Input.is_key_held(Input.get_keycode("D"))) {
             GUY_X = GUY_X + 0.1
             System.print(GUY_X)
-        }if (Input.is_key_held(Input.get_keycode("W"))) {
+        }
+        if (Input.is_key_held(Input.get_keycode("W"))) {
             GUY_X = GUY_Y + 0.1
             System.print(GUY_Y)
-        }if (Input.is_key_held(Input.get_keycode("S"))) {
+        }
+        if (Input.is_key_held(Input.get_keycode("S"))) {
             GUY_X = GUY_X - 0.1
             System.print(GUY_Y)
         }
