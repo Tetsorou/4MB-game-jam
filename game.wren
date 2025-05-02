@@ -5,6 +5,7 @@ class Game {
     static init(args) {
         Engine.init(WIDTH,HEIGHT,TITLE)
         Draw.clear()
+        System.print(Engine.get_os())
     }
     static tick(dt) {
         
