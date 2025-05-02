@@ -1,8 +1,8 @@
-var WIDTH = 320
-var HEIGHT = 120
+var WIDTH = 400
+var HEIGHT = 200
 var TITLE= "4MB-game-jam"
-var guy = Surface.new_from_png("Soldier1.png")
-
+var GUY_X = 0.0
+var GUY_Y = 0.0
 class Game {
     static init(args) {
         Engine.init(WIDTH,HEIGHT,TITLE)
@@ -11,6 +11,10 @@ class Game {
     }
     static tick(dt) {
         Draw.clear()
-        Surface.draw(guy, 0, 0,1)
+        Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
+        if (Input.is_key_pressed(Input.get_keycode("A"))) {
+            GUY_X = GUY_X + 0.1
+            System.print(GUY_X)
+        }
     }
 }
