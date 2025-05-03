@@ -13,10 +13,7 @@ class Game {
         
     }
     static tick(dt) {
-      
-
-
-      draw_guy.call()
+      this.draw_guy()
     }
     static draw_guy() {
          Draw.clear()
