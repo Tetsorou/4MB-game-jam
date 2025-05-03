@@ -1,4 +1,4 @@
-//import "guy" for Guy
+import "./guy" for Guy
 var WIDTH = 400
 var HEIGHT = 200
 var TITLE= "4MB-game-jam"
@@ -21,7 +21,7 @@ class Game {
         DIFF = System.clock - TIME
         if (DIFF * 1000 > WAIT) {
             
-            //guy.draw_guy()
+            guy.draw_guy()
         }
 
         TIME = System.clock
