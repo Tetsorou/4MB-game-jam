@@ -15,7 +15,7 @@ class Game {
     static init(args) {
         Engine.init(WIDTH/2,HEIGHT/2,TITLE)
         Draw.clear()
-        System.print("Current directory: " + System.cwd())
+        System.print("Current directory: " + System.pwd())
     }
     static tick(dt) {
         DIFF = System.clock - TIME
