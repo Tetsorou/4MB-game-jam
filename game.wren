@@ -10,7 +10,7 @@ class Game {
         
     }
     static tick(dt) {
-        print(dt)
+        System.print(dt)
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
         if (Input.is_key_held(Input.get_keycode("A"))) {
