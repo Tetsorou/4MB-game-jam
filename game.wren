@@ -8,7 +8,7 @@ var WAIT = 1/60
 
 var DONE = false
 
-import "guy.wren"
+import "guy"
 
 class Game {
     static init(args) {
