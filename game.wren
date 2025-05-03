@@ -14,14 +14,15 @@ class Game {
     }
     static tick(dt) {
         
-        var currentTime = System.clock
-        var delta = currentTime - TIME
-        TIME = currentTime
-        if (delta > 0) {
-        FPS = 1000 / COUNTER
-        System.print("1000 / %(delta)   -> FPS: %(FPS.round)")
-        COUNTER = 0
-        }
+        //var currentTime = System.clock
+        //var delta = currentTime - TIME
+        //TIME = currentTime
+        //if ( > 0) {
+        //FPS = 1000 / COUNTER
+        //System.print("1000 / %(delta)   -> FPS: %(FPS.round)")
+        //COUNTER = 0
+        //}
+        System.print(System.clock)
 
 
 
