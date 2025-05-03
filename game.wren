@@ -37,12 +37,12 @@ class Game {
                     GUY_Y = GUY_Y - GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X - GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else (Input.is_key_held(Input.get_keycode("S"))) {
+                if (Input.is_key_held(Input.get_keycode("S"))) {
                 
                     GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X - GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else {
+                if (!Input.is_key_held(Input.get_keycode("W")) || !Input.is_key_held(Input.get_keycode("S"))) {
                     GUY_X = GUY_X - GUY_MOVE_DISTANCE
                 }
             }
@@ -51,12 +51,12 @@ class Game {
                     GUY_Y = GUY_Y - GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else  (Input.is_key_held(Input.get_keycode("S"))) {
+                if  (Input.is_key_held(Input.get_keycode("S"))) {
                 
                     GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else {
+                if (!Input.is_key_held(Input.get_keycode("W")) || !Input.is_key_held(Input.get_keycode("S"))) {
                      GUY_X = GUY_X + GUY_MOVE_DISTANCE
                 }
             }
@@ -66,12 +66,12 @@ class Game {
                     GUY_Y = GUY_Y - GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else (Input.is_key_held(Input.get_keycode("A"))) {
+                if (Input.is_key_held(Input.get_keycode("A"))) {
                 
                     GUY_Y = GUY_Y - GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X - GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else {
+                if (!Input.is_key_held(Input.get_keycode("A")) || !Input.is_key_held(Input.get_keycode("D")))  {
                      GUY_Y = GUY_Y - GUY_MOVE_DISTANCE
                 }
 
@@ -81,12 +81,12 @@ class Game {
                     GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else  (Input.is_key_held(Input.get_keycode("A"))) {
+                if  (Input.is_key_held(Input.get_keycode("A"))) {
                 
                     GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
                     GUY_X = GUY_X - GUY_DIAGONAL_MOVE_DISTANCE
                 }
-                else {
+                if (!Input.is_key_held(Input.get_keycode("A")) || !Input.is_key_held(Input.get_keycode("D"))) {
                      GUY_Y = GUY_Y + GUY_MOVE_DISTANCE
                 }
 
