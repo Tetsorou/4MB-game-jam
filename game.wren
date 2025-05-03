@@ -16,6 +16,7 @@ class Game {
         if ((System.clock - TIME) % 1000 == 0) {
             System.print(" ")
         }
+        System.print("THIS IS INDEED THE SYSTEM CLOCK")
         System.print(System.clock)
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
