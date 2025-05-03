@@ -17,12 +17,18 @@ class Game {
         WAIT = 1/60
         DIFF = System.clock - TIME
         if(DIFF < WAIT) {
-            System.sleep(WAIT - DIFF)
+            this.sleep((WAIT - DIFF) * 1000)
         }
         this.draw_guy()
         TIME = System.clock
     }
-
+    static sleep(ms) {
+        var start = System.clock
+        while (System.clock - start < ms) {
+            // Yield the coroutine to allow other operations
+            Coroutine.yield()
+        }
+    }
     static draw_guy() {
          Draw.clear()
             Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
