@@ -18,7 +18,7 @@ class Game {
     static tick(dt) {
         WAIT = 1/60
         DIFF = System.clock - TIME
-        if (DIFF > WAIT) {
+        if (DIFF * 1000 > WAIT) {
             this.draw_guy()
         }
         System.print("%(DIFF) > %(WAIT) ")
