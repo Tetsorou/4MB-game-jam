@@ -8,6 +8,7 @@ var TIME = 0.0
 var DIFF = 0
 var WAIT = 0
 
+
 class Game {
     static init(args) {
         Engine.init(WIDTH,HEIGHT,TITLE)
