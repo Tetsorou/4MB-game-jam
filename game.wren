@@ -1,4 +1,4 @@
-import "./guy" for Guy
+import "guy" for Guy
 var WIDTH = 400
 var HEIGHT = 200
 var TITLE= "4MB-game-jam"
