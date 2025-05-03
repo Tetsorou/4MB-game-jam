@@ -12,12 +12,7 @@ class Game {
         
     }
     static tick(dt) {
-        COUNTER = COUNTER + 1
-        if ((System.clock - TIME) % 1000 == 0) {
-            System.print(" ")
-        }
-        System.print("THIS IS INDEED THE SYSTEM CLOCK")
-        System.print(System.clock)
+        update.call()
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
         if (Input.is_key_held(Input.get_keycode("A"))) {
@@ -37,4 +32,14 @@ class Game {
             System.print(GUY_Y)
         }
     }
+    var update = Fn.new {
+    var currentTime = System.clock
+    var delta = currentTime - lastTime
+    lastTime = currentTime
+
+    if (delta > 0) {
+        fps = 1000 / delta
+        System.print("FPS: %(fps.round)")
+    }
+}
 }
