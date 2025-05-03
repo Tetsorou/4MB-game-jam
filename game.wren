@@ -5,8 +5,9 @@ var GUY_X = 0.0
 var GUY_Y = 0.0
 
 var TIME = 0.0
-var WAIT = 0
 var DIFF = 0
+var WAIT = 0
+
 class Game {
     static init(args) {
         Engine.init(WIDTH,HEIGHT,TITLE)
@@ -16,19 +17,13 @@ class Game {
     static tick(dt) {
         WAIT = 1/60
         DIFF = System.clock - TIME
-        if(DIFF < WAIT) {
-            this.sleep((WAIT - DIFF) * 1000)
+        while (DIFF < WAIT) {
+
         }
         this.draw_guy()
         TIME = System.clock
     }
-    static sleep(ms) {
-        var start = System.clock
-        while (System.clock - start < ms) {
-            // Yield the coroutine to allow other operations
-            Coroutine.yield()
-        }
-    }
+    
     static draw_guy() {
          Draw.clear()
             Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
