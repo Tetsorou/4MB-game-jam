@@ -8,16 +8,18 @@ var WAIT = 1/60
 
 var DONE = false
 
-import "guy"
+
 
 class Game {
     static init(args) {
         Engine.init(WIDTH/2,HEIGHT/2,TITLE)
         Draw.clear()
+        import "guy"
     }
     static tick(dt) {
         DIFF = System.clock - TIME
         if (DIFF * 1000 > WAIT) {
+            
             guy.draw_guy()
         }
 
