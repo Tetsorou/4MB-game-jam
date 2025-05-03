@@ -14,7 +14,7 @@ class Game {
     static tick(dt) {
         COUNTER = COUNTER + 1
         if ((System.clock - TIME) % 1000 == 0) {
-            System.print(COUNTER/1000)
+            System.print(" ")
         }
         System.print(System.clock)
         Draw.clear()
