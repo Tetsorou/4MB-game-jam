@@ -18,7 +18,7 @@ class Game {
     static tick(dt) {
         WAIT = 1/60
         DIFF = System.clock - TIME
-        while (DIFF < WAIT) {
+        if (DIFF > WAIT) {
             System.print(dt)
         }
         System.print("Hi")
