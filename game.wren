@@ -22,7 +22,10 @@ class Game {
         //System.print("1000 / %(delta)   -> FPS: %(FPS.round)")
         //COUNTER = 0
         //}
-        System.print(System.clock)
+        if (System.clock.round % 2 == 0) {
+            System.print(System.clock)
+        }
+        
 
 
 
