@@ -1,3 +1,4 @@
+//import "guy" for Guy
 var WIDTH = 400
 var HEIGHT = 200
 var TITLE= "4MB-game-jam"
@@ -14,13 +15,13 @@ class Game {
     static init(args) {
         Engine.init(WIDTH/2,HEIGHT/2,TITLE)
         Draw.clear()
-        import "guy"
+        System.print("Current directory: " + System.cwd())
     }
     static tick(dt) {
         DIFF = System.clock - TIME
         if (DIFF * 1000 > WAIT) {
             
-            guy.draw_guy()
+            //guy.draw_guy()
         }
 
         TIME = System.clock

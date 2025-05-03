@@ -3,7 +3,7 @@ var GUY_Y = 0.0
 var GUY_MOVE_DISTANCE = 0.2
 var GUY_DIAGONAL_MOVE_DISTANCE = Math.sin(45) * 0.2
 
-class guy {
+class Guy {
     static draw_guy() {
         Draw.clear()
 
