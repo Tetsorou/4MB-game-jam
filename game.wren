@@ -19,10 +19,10 @@ class Game {
         WAIT = 1/60
         DIFF = System.clock - TIME
         if (DIFF > WAIT) {
-            System.print(dt)
+            System.print("Hi")
+            this.draw_guy()
         }
-        System.print("Hi")
-        this.draw_guy()
+        
         TIME = System.clock
     }
     
