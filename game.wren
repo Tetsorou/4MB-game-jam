@@ -12,7 +12,15 @@ class Game {
         
     }
     static tick(dt) {
-        update.call()
+        
+        var currentTime = System.clock
+        var delta = currentTime - TIME
+        TIME = currentTime
+        if (delta > 0) {
+        fps = 1000 / delta
+        System.print("FPS: %(fps.round)")
+        }
+
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
         if (Input.is_key_held(Input.get_keycode("A"))) {
@@ -35,7 +43,7 @@ class Game {
     var update = Fn.new {
     var currentTime = System.clock
     var delta = currentTime - lastTime
-    lastTime = currentTime
+    TIME = currentTime
 
     if (delta > 0) {
         fps = 1000 / delta
