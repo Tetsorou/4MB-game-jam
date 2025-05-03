@@ -7,7 +7,7 @@ var TIME = 0.0
 var DIFF = 0
 var WAIT = 1/60
 
-var DONE = false
+
 
 
 
