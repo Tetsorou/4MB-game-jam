@@ -13,10 +13,10 @@ class Game {
     }
     static tick(dt) {
         COUNTER = COUNTER + 1
-        if ((System.clock - TIME) % 1000 == 0) {
-            System.print("fps: $(TIME)")
-        }
-        
+        //if ((System.clock - TIME) % 1000 == 0) {
+            
+        //}
+        System.print("fps: $(TIME)")
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
         if (Input.is_key_held(Input.get_keycode("A"))) {
