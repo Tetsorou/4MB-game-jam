@@ -14,9 +14,8 @@ var DONE = false
 
 class Game {
     static init(args) {
-        Engine.init(WIDTH,HEIGHT,TITLE)
+        Engine.init(WIDTH/2,HEIGHT/2,TITLE)
         Draw.clear()
-        
     }
     static tick(dt) {
         DIFF = System.clock - TIME
