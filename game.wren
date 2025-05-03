@@ -14,7 +14,8 @@ class Game {
     }
     static tick(dt) {
         if ((System.clock * 1000) % 16) {
-            System.print(System.clock)
+            COUNTER = COUNTER + 1
+            System.print("%(System.clock) at %(COUNTER)")
             Draw.clear()
             Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
 
@@ -33,6 +34,9 @@ class Game {
             if (Input.is_key_held(Input.get_keycode("S"))) {
                 GUY_Y = GUY_Y + 0.2
               //  System.print(GUY_Y)
+            }
+            if (COUNTER == 60) {
+                COUNTER = 0
             }
         }
         
