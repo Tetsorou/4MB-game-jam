@@ -19,10 +19,9 @@ class Game {
         WAIT = 1/60
         DIFF = System.clock - TIME
         if (DIFF > WAIT) {
-            System.print("Hi")
             this.draw_guy()
         }
-        
+        System.print("%(DIFF) > %(WAIT) ")
         TIME = System.clock
     }
     
