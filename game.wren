@@ -18,8 +18,9 @@ class Game {
         var delta = currentTime - TIME
         TIME = currentTime
         if (delta > 0) {
-        FPS = 1000 / delta
+        FPS = 1000 / COUNTER
         System.print("1000 / %(delta)   -> FPS: %(FPS.round)")
+        COUNTER = 0
         }
 
 
