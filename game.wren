@@ -1,5 +1,5 @@
 var WIDTH = 400 //This line is #330
-var HEIGHT = 200
+var HEIGHT = 240
 var TITLE= "4MB-game-jam"
 
 var TIME = 0.0
