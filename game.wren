@@ -14,12 +14,7 @@ class Game {
     }
     static tick(dt) {
         
-       while (true) {
         System.print(System.clock)
-       }
-        
-
-
 
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
