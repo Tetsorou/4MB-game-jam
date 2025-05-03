@@ -3,7 +3,7 @@ var HEIGHT = 200
 var TITLE= "4MB-game-jam"
 var GUY_X = 0.0
 var GUY_Y = 0.0
-var TIME = System.clock()
+var TIME = System.clock
 var COUNTER = 0
 class Game {
     static init(args) {
@@ -13,7 +13,7 @@ class Game {
     }
     static tick(dt) {
         COUNTER = COUNTER + 1
-        if ((System.clock() - TIME) % 1000 == 0) {
+        if ((System.clock - TIME) % 1000 == 0) {
             System.print("fps: $(TIME)")
         }
         
