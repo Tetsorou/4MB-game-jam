@@ -32,7 +32,7 @@ class Guy {
     static draw_guy() {
         Draw.clear()
 
-        Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
+        Surface.draw(Surface.new_from_png("sprites/Soldier1.png"), GUY_X, GUY_Y,1)
         if (Input.is_key_held(Input.get_keycode("S")) && Input.is_key_held(Input.get_keycode("D")) && !DONE) {
             GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
             GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
