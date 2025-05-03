@@ -12,7 +12,7 @@ class Game {
         
     }
     static tick(dt) {
-        COUNTER = COUNTER + 1;
+        COUNTER = COUNTER + 1
         if ((System.clock() - TIME) % 1000 == 0) {
             System.print("fps: $(TIME)")
         }
