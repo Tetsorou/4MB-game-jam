@@ -43,9 +43,7 @@ class Game {
                 GUY_Y = GUY_Y + 0.2
               //  System.print(GUY_Y)
             }
-            if (COUNTER == 60) {
-                COUNTER = 0
-            }
+           
     }
     
 }
