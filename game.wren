@@ -5,6 +5,7 @@ var GUY_X = 0.0
 var GUY_Y = 0.0
 var TIME = System.clock
 var COUNTER = 0
+var FPS = 0
 class Game {
     static init(args) {
         Engine.init(WIDTH,HEIGHT,TITLE)
@@ -17,11 +18,11 @@ class Game {
         var delta = currentTime - TIME
         TIME = currentTime
         if (delta > 0) {
-        fps = 1000 / delta
-        System.print("FPS: %(fps.round)")
+        FPS = 1000 / delta
+        System.print("FPS: %(FPS.round)")
         }
 
-        
+
 
         Draw.clear()
         Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
