@@ -21,6 +21,7 @@ class Game {
         while (DIFF < WAIT) {
 
         }
+        System.print("Hi")
         this.draw_guy()
         TIME = System.clock
     }
