@@ -9,7 +9,7 @@ var WAIT = 1/60
 var GUY_X = 0.0
 var GUY_Y = 0.0
 var GUY_MOVE_DISTANCE = 0.2
-var GUY_DIAGONAL_MOVE_DISTANCE = Math.sin(45) * 0.2
+var GUY_DIAGONAL_MOVE_DISTANCE = Math.sin(4\5) * 0.2
 var DONE = false
 
 class Game {
