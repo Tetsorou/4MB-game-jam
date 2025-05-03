@@ -19,7 +19,7 @@ class Game {
        
     }
     static tick(dt) {
-        Guy.draw_guy()
+        
         DIFF = System.clock - TIME
         if (DIFF * 1000 > WAIT) {
             Guy.draw_guy()
