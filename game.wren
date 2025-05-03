@@ -19,7 +19,7 @@ class Game {
         TIME = currentTime
         if (delta > 0) {
         FPS = 1000 / delta
-        System.print("FPS: %(FPS.round)")
+        System.print("1000 / %(delta)   -> FPS: %(FPS.round)")
         }
 
 
