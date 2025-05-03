@@ -13,7 +13,8 @@ class Game {
         
     }
     static tick(dt) {
-            if ((System.clock * 1000) % 16) {
+        if ((System.clock * 1000) % 16) {
+            System.print(System.clock)
             Draw.clear()
             Surface.draw(Surface.new_from_png("Soldier1.png"), GUY_X, GUY_Y,1)
 
