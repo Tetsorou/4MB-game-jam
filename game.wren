@@ -27,6 +27,7 @@ class Game {
         TIME = System.clock
     }   
 }
+
 class Guy {
     static draw_guy() {
         Draw.clear()
