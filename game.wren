@@ -1,134 +1,137 @@
-// Configuracion de la ventana 
-var WIDTH = 400
-var HEIGHT = 240
+/*
+  la linea 1 del documento es representada como 330 en los errores
+*/
+
+// Configuracion de la ventana  
+var WIDTH = 640
+var HEIGHT = 360
 var TITLE = "4MB-game-jam"
  
-// Control de frames 
-var TIME = 0.0
-var DIFF = 0
-var WAIT = 1/60
-
-// Parámetros del jugador y recursos 
-var GUY_SPRITE_PATH = "sprites/Soldier1.png"
-var GUY_SPRITE = null
-var GUY_WIDTH = 32
-var GUY_HEIGHT = 32
-var GUY_X = 100.0
-var GUY_Y = 0.0
-
-var GUY_MOVE_DISTANCE = 0.2
-var GUY_DIAGONAL_MOVE_DISTANCE = Math.sin(Math.PI / 4) * GUY_MOVE_DISTANCE
-
-// Fisica vertical
-var GUY_VY = 0.0
-var GRAVITY = 0.3
-var JUMP_FORCE = -5.0
-var ON_GROUND = false
-
-var DONE = false
-
 // --- Piso ---
 var FLOOR_HEIGHT = 50
 var FLOOR_Y = HEIGHT - FLOOR_HEIGHT
 
+var LOGS = null
+var DUDE = null
+
 class Game {
+  //instancia de Guy
+  static dude {
+    if (DUDE == null) {
+      DUDE = Guy.new(WIDTH / 2, HEIGHT / 2, 20, 20, "sprites/idleSmallerSoldier1.png")
+    }
+    return DUDE
+  }
+  
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
-    GUY_SPRITE = Surface.new_from_png(GUY_SPRITE_PATH)
+    LOGS = FileIO.open("./logs.txt", "write")
   }
 
   static tick(dt) {
-    DIFF = System.clock - TIME
-    if (DIFF * 1000 > WAIT) {
-      TIME = System.clock
-      Draw.clear()
-      Floor.draw()
-      Guy.draw_guy()
-    }
+    this.draw()
+    Player_input.controls()
   }
+    static draw() {
+      Draw.clear(Color.BLACK)
+      Floor.draw()
+      dude.draw()
+    }
 }
 
 class Guy {
-  static draw_guy() {
+  //getters
+  sprite_path {_sprite_path}
+  sprite {_sprite}
+  width {_width}
+  height {_height}
+  x {_x}
+  y {_y}
+  speed {_speed}
+  gravity {_gravity}
+  on_ground {_on_ground}
+  vy {_vy} // velocidad en y
+  jump_force {_jump_force}
+  //setters
+  sprite_path=(value) {_path = value}
+  sprite=(value) {_sprite = value}
+  x=(value) {_x= value}
+  y=(value){_y= value}
+  on_ground=(value) {_on_ground = value}
+  vy=(value) {_vy = value} 
+  jump_force=(value) {_jump_force = value}
+
+
+  construct new(x1,y1,width1,height1,path) {
+    _sprite_path = path
+    _x = x1
+    _y = y1
+    _width = width1
+    _height = height1
+    _sprite = Surface.new_from_png(sprite_path)
+    _vy = 0
+    _speed = 2
+    _jump_force = -5
+    _on_ground = false
+    _gravity = 0.3
+  }
+
+   draw() {
+    this.physics()
+    Surface.draw(sprite, x, y, 1)
+  }
+  physics() {
     // Aplicar gravedad
-    GUY_VY = GUY_VY + GRAVITY
-    GUY_Y = GUY_Y + GUY_VY
+    vy = vy + gravity
+    y = y + vy
 
     // Colisión con el piso
-    if (GUY_Y + GUY_HEIGHT >= FLOOR_Y) {
-      GUY_Y = FLOOR_Y - GUY_HEIGHT
-      GUY_VY = 0.0
-      ON_GROUND = true
+    if (y + height >= FLOOR_Y) {
+      y = FLOOR_Y - height +1
+      vy = 0.0
+      on_ground = true
     } else {
-      ON_GROUND = false
+      on_ground = false
     }
-
-    // Dibujar sprite
-    Surface.draw(GUY_SPRITE, GUY_X, GUY_Y, 1)
-
-    // Salto con W
-    if (Input.is_key_pressed(Input.get_keycode("W")) && ON_GROUND && !DONE) {
-      GUY_VY = JUMP_FORCE
-      ON_GROUND = false
-      DONE = true
-    }
-
-    // Movimientos WASD y diagonales
-    if (Input.is_key_held(Input.get_keycode("S")) && Input.is_key_held(Input.get_keycode("D")) && !DONE) {
-      GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
-      GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("S")) && Input.is_key_held(Input.get_keycode("A")) && !DONE) {
-      GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
-      GUY_X = GUY_X - GUY_DIAGONAL_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("W")) && Input.is_key_held(Input.get_keycode("D")) && !DONE) {
-      GUY_Y = GUY_Y - GUY_DIAGONAL_MOVE_DISTANCE
-      GUY_X = GUY_X + GUY_DIAGONAL_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("W")) && Input.is_key_held(Input.get_keycode("A")) && !DONE) {
-      GUY_Y = GUY_Y - GUY_DIAGONAL_MOVE_DISTANCE
-      GUY_X = GUY_X - GUY_DIAGONAL_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("A")) && !DONE) {
-      GUY_X = GUY_X - GUY_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("D")) && !DONE) {
-      GUY_X = GUY_X + GUY_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("W")) && !DONE) {
-      GUY_Y = GUY_Y - GUY_MOVE_DISTANCE
-      DONE = true
-    }
-    if (Input.is_key_held(Input.get_keycode("S")) && !DONE) {
-      GUY_Y = GUY_Y + GUY_MOVE_DISTANCE
-      DONE = true
-    }
-
-    DONE = false
-
+    //movimiento
     // Límites de pantalla
-    if (GUY_X < 0) {
-      GUY_X = 0
+    if (x < 0) {
+      x = 0
     }
-    if (GUY_X + GUY_WIDTH > WIDTH) {
-      GUY_X = WIDTH - GUY_WIDTH
+    if (x  > WIDTH - width ) {
+      y = WIDTH - width 
     }
-    if (GUY_Y < 0) {
-      GUY_Y = 0
-      GUY_VY = 0.0
+    if (y < 0) {
+      y = 0 
+      vy = 0.0
     }
   }
+
 }
 
 class Floor {
   static draw() {
     Draw.rectangle(0, FLOOR_Y,WIDTH, FLOOR_HEIGHT,0, 200, 0, 255, true)
+  }
+}
+
+class Player_input {
+  static controls() {
+    if (Input.is_key_held(Input.get_keycode("W")) && Game.dude.on_ground) {
+      Game.dude.vy = Game.dude.jump_force
+      Game.dude.on_ground = false
+    }
+    if (Input.is_key_held(Input.get_keycode("A"))) {
+      Game.dude.x = Game.dude.x - Game.dude.speed
+      LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
+    }
+    if (Input.is_key_held(Input.get_keycode("D"))) {
+      Game.dude.x = Game.dude.x + Game.dude.speed
+      LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
+    }
+    if (Input.is_key_held(Input.get_keycode("L"))) {
+      LOGS.close()
+      Engine.destroy()
+    }
   }
 }
