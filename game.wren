@@ -14,6 +14,8 @@ var FLOOR_Y = HEIGHT - FLOOR_HEIGHT
 var LOGS = null
 var DUDE = null
 
+var TDT = 0 //Total delta time
+
 class Game {
   //instancia de Guy
   static dude {
@@ -29,9 +31,15 @@ class Game {
   }
 
   static tick(dt) {
+    //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
+    TDT = TDT+dt
+    if (TDT > 1/60) {
+      LOGS.write("%(dt)\n")
+      dude.physics()
+      Player_input.controls()
+      TDT = 0
+    }
     this.draw()
-    dude.physics()
-    Player_input.controls()
   }
     static draw() {
       Draw.clear(Color.BLACK) //Fondo
@@ -122,11 +130,11 @@ class Player_input {
     }
     if (Input.is_key_held(Input.get_keycode("A"))) { //Move Right
       Game.dude.x = Game.dude.x - Game.dude.speed
-      LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
+      // LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("D"))) { //Move left
       Game.dude.x = Game.dude.x + Game.dude.speed
-      LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
+      // LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
       LOGS.close()
