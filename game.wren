@@ -31,6 +31,7 @@ class Game {
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
     // LOGS = FileIO.open("./logs.txt", "write")
+    ind
   }
 
   static tick(dt) {
