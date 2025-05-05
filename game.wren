@@ -1,7 +1,7 @@
 /*
   la linea 1 del documento es representada como 330 en los errores
 */
-
+//
 // Configuracion de la ventana  
 var WIDTH = 640
 var HEIGHT = 360
