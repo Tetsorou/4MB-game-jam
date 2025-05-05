@@ -30,15 +30,16 @@ class Game {
   
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
-    LOGS = FileIO.open("./logs.txt", "write")
+    // LOGS = FileIO.open("./logs.txt", "write")
   }
 
   static tick(dt) {
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
     TDT = TDT+dt
     if (TDT > 1/67) {
-      dude.physics()
+      
       Player_input.controls()
+      dude.physics()
       COUNTER = COUNTER + TDT
       TDT = 0
       FPS = FPS + 1
@@ -46,7 +47,7 @@ class Game {
     }
     if (COUNTER > 1) {
       LAST_FPS = FPS
-      LOGS.write("FPS: %(FPS)")
+      // LOGS.write("FPS: %(FPS)")
       COUNTER = 0
       FPS = 0
     }
@@ -120,7 +121,8 @@ class Guy {
       x = 0
     }
     if (x  > WIDTH - width ) {
-      y = WIDTH - width 
+      System.print("%(x  > WIDTH - width)")
+      x = WIDTH - width 
     }
     if (y < 0) {
       y = 0 
@@ -151,7 +153,7 @@ class Player_input {
       // LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
-      LOGS.close()
+      // LOGS.close()
       Engine.destroy()
     }
   }
