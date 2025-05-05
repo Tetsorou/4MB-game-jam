@@ -11,7 +11,6 @@ var GUY_Y = 0.0
 var GUY_MOVE_DISTANCE = 0.2
 var GUY_DIAGONAL_MOVE_DISTANCE = Math.sin(45) * 0.2
 var DONE = false
-
 class Game {
     static init(args) {
         Engine.init(WIDTH/2,HEIGHT/2,TITLE)
@@ -31,7 +30,7 @@ class Game {
 class Guy {
     static draw_guy() {
         Draw.clear()
-
+        
         Surface.draw(Surface.new_from_png("sprites/Soldier1.png"), GUY_X, GUY_Y,1)
         if (Input.is_key_held(Input.get_keycode("S")) && Input.is_key_held(Input.get_keycode("D")) && !DONE) {
             GUY_Y = GUY_Y + GUY_DIAGONAL_MOVE_DISTANCE
