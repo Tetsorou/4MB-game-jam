@@ -15,6 +15,9 @@ var LOGS = null
 var DUDE = null
 
 var TDT = 0 //Total delta time
+var COUNTER = 0
+var FPS = 0
+var LAST_FPS = 0
 
 class Game {
   //instancia de Guy
@@ -33,11 +36,19 @@ class Game {
   static tick(dt) {
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
     TDT = TDT+dt
-    if (TDT > 1/60) {
-      LOGS.write("%(dt)\n")
+    if (TDT > 1/67) {
       dude.physics()
       Player_input.controls()
+      COUNTER = COUNTER + TDT
       TDT = 0
+      FPS = FPS + 1
+      
+    }
+    if (COUNTER > 1) {
+      LAST_FPS = FPS
+      LOGS.write("FPS: %(FPS)")
+      COUNTER = 0
+      FPS = 0
     }
     this.draw()
   }
@@ -45,6 +56,9 @@ class Game {
       Draw.clear(Color.BLACK) //Fondo
       Floor.draw()
       dude.draw() //Dibujando instancia de Guy
+      Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
+      
+      
     }
 }
 
