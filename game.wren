@@ -30,12 +30,13 @@ class Game {
 
   static tick(dt) {
     this.draw()
+    dude.physics()
     Player_input.controls()
   }
     static draw() {
-      Draw.clear(Color.BLACK)
+      Draw.clear(Color.BLACK) //Fondo
       Floor.draw()
-      dude.draw()
+      dude.draw() //Dibujando instancia de Guy
     }
 }
 
@@ -77,7 +78,6 @@ class Guy {
   }
 
    draw() {
-    this.physics()
     Surface.draw(sprite, x, y, 1)
   }
   physics() {
@@ -93,7 +93,6 @@ class Guy {
     } else {
       on_ground = false
     }
-    //movimiento
     // Límites de pantalla
     if (x < 0) {
       x = 0
@@ -116,20 +115,20 @@ class Floor {
 }
 
 class Player_input {
-  static controls() {
-    if (Input.is_key_held(Input.get_keycode("W")) && Game.dude.on_ground) {
+  static controls() { 
+    if (Input.is_key_held(Input.get_keycode("W")) && Game.dude.on_ground) { //Jump
       Game.dude.vy = Game.dude.jump_force
       Game.dude.on_ground = false
     }
-    if (Input.is_key_held(Input.get_keycode("A"))) {
+    if (Input.is_key_held(Input.get_keycode("A"))) { //Move Right
       Game.dude.x = Game.dude.x - Game.dude.speed
       LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
-    if (Input.is_key_held(Input.get_keycode("D"))) {
+    if (Input.is_key_held(Input.get_keycode("D"))) { //Move left
       Game.dude.x = Game.dude.x + Game.dude.speed
       LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
-    if (Input.is_key_held(Input.get_keycode("L"))) {
+    if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
       LOGS.close()
       Engine.destroy()
     }
