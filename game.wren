@@ -36,7 +36,7 @@ class Game {
   static tick(dt) {
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
     TDT = TDT+dt
-    if (TDT > 1/67) {
+    if (TDT > 1/60 || FPS % 5 == 0) {
       
       Player_input.controls()
       dude.physics()
