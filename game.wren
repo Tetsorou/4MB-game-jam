@@ -19,6 +19,8 @@ var COUNTER = 0
 var FPS = 0
 var LAST_FPS = 0
 
+var NUMBER_OF_TRUES = 0
+
 class Game {
   //instancia de Guy
   static dude {
@@ -37,9 +39,17 @@ class Game {
   }
 
   static tick(dt) {
-    //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
     TDT = TDT+dt
-    if (TDT > 1/60 || FPS % 5 == 0) {
+    if (TDT > 1/60) {
+        NUMBER_OF_TRUES = NUMBER_OF_TRUES + 1 
+    }
+    if (FPS % 10 == 0) {
+      NUMBER_OF_TRUES = NUMBER_OF_TRUES + 1 
+    }
+    //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
+    
+    if (NUMBER_OF_TRUES == 1) {
+      NUMBER_OF_TRUES = 0
       // methods to be updated at a somewhat constant speed
       Player_input.controls()
       dude.physics()
@@ -54,7 +64,7 @@ class Game {
       COUNTER = 0
       FPS = 0
     }
-    this.draw()
+    draw()
 
   }
     static draw() {
@@ -129,7 +139,6 @@ construct new(x1,y1,width1,height1,path,smap) {
     var main = Fiber.current
     
     var fiber = Fiber.new{ |value|       
-      System.print((COUNTER * 100).floor)
       if ((FPS) % 7  == 0) {
         sprite_index= sprite_index + 1
       }
@@ -169,7 +178,6 @@ construct new(x1,y1,width1,height1,path,smap) {
       x = 0
     }
     if (x  > WIDTH - width ) {
-      System.print("%(x  > WIDTH - width)")
       x = WIDTH - width 
     }
     if (y < 0) {
