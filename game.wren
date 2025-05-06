@@ -123,12 +123,12 @@ construct new(x1,y1,width1,height1,path,smap) {
     _gravity = 0.3
     _sprites = smap
     _sprite_index = 1
-    _sprite_direction= 0
+    _sprite_direction="Right"
     _sprite_last = ""
   }
 
   draw(current_sprite_param) {
-    Surface.draw_angle(current_sprite_param, x, y, sprite_direction)
+    Surface.draw_angle(current_sprite_param, x, y, 0)
   }
   animation () {
     if (moving) {
@@ -139,18 +139,16 @@ construct new(x1,y1,width1,height1,path,smap) {
     var main = Fiber.current
     
     var fiber = Fiber.new{ |value|       
-      if ((FPS) % 7  == 0) {
+      if ((FPS) % 10  == 0) {
         sprite_index= sprite_index + 1
       }
       if (sprite_index > sprites[sprite_key]) {
         sprite_index= 1   
       }
       
-      main.transfer(Surface.new_from_png("%(sprite_path)%(sprite_key)%(sprite_index).png"))
+      main.transfer(Surface.new_from_png("%(sprite_path)%(sprite_key)%(sprite_index)%(sprite_direction).png"))
     }
-    
-    
-    
+
     var proceed = sprite_last == sprite_key
    
     if (sprite_last != sprite_key) {
@@ -196,20 +194,33 @@ class Floor {
 
 class Player_input {
   static controls() {
+    var done = false
     Game.dude.moving = false
-    if (Input.is_key_held(Input.get_keycode("W")) && Game.dude.on_ground) { //Jump
+    if (Input.is_key_held(Input.get_keycode("W")) && Game.dude.on_ground && !done) { //Jump
       Game.dude.moving = true
       Game.dude.vy = Game.dude.jump_force
       Game.dude.on_ground = false
+      done = true
     }
-    if (Input.is_key_held(Input.get_keycode("A"))) { //Move Right
-      Game.dude.x = Game.dude.x - Game.dude.speed
-      Game.dude.moving = true
+     if (Input.is_key_held(Input.get_keycode("D")) && Input.is_key_held(Input.get_keycode("A")) && !done) { //Move Right
+      // Game.dude.x = Game.dude.x - Game.dude.speed
+      Game.dude.moving = false
+      // Game.dude.sprite_direction="Left"
+      done = true
       // LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
-    if (Input.is_key_held(Input.get_keycode("D"))) { //Move left
+    if (Input.is_key_held(Input.get_keycode("A")) && !done) { //Move Right
+      Game.dude.x = Game.dude.x - Game.dude.speed
+      Game.dude.moving = true
+      Game.dude.sprite_direction="Left"
+      done = true
+      // LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
+    }
+    if (Input.is_key_held(Input.get_keycode("D")) && !done) { //Move left
       Game.dude.x = Game.dude.x + Game.dude.speed
       Game.dude.moving = true
+      Game.dude.sprite_direction="Right"
+      done = true
       // LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
