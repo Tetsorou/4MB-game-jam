@@ -172,11 +172,11 @@ construct new(x1,y1,width1,height1,path,smap) {
       on_ground = false
     }
     // Límites de pantalla
-    if (x < 0) {
-      x = 0
+    if (x < 0 + width/3) {
+      x = 0 + width/3
     }
-    if (x  > WIDTH - width ) {
-      x = WIDTH - width 
+    if (x  > WIDTH - width/3 ) {
+      x = WIDTH - width/3
     }
     if (y < 0) {
       y = 0 
@@ -203,25 +203,20 @@ class Player_input {
       done = true
     }
      if (Input.is_key_held(Input.get_keycode("D")) && Input.is_key_held(Input.get_keycode("A")) && !done) { //Move Right
-      // Game.dude.x = Game.dude.x - Game.dude.speed
       Game.dude.moving = false
-      // Game.dude.sprite_direction="Left"
       done = true
-      // LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("A")) && !done) { //Move Right
       Game.dude.x = Game.dude.x - Game.dude.speed
       Game.dude.moving = true
       Game.dude.sprite_direction="Left"
       done = true
-      // LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("D")) && !done) { //Move left
       Game.dude.x = Game.dude.x + Game.dude.speed
       Game.dude.moving = true
       Game.dude.sprite_direction="Right"
       done = true
-      // LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
       // LOGS.close()
