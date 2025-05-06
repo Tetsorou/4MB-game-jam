@@ -3,8 +3,8 @@
 */
 //
 // Configuracion de la ventana  
-var WIDTH = 640
-var HEIGHT = 360
+var WIDTH = 320 //640
+var HEIGHT =180 //360
 var TITLE = "4MB-game-jam"
  
 // --- Piso ---
@@ -23,7 +23,10 @@ class Game {
   //instancia de Guy
   static dude {
     if (DUDE == null) {
-      DUDE = Guy.new(WIDTH / 2, HEIGHT / 2, 20, 20, "sprites/idleSmallerSoldier1.png")
+      DUDE = Guy.new(WIDTH / 2, HEIGHT / 2, 20, 20, "sprites/Soldier/Soldier", {
+        "Idle":6,
+        "Walk":8
+      })
     }
     return DUDE
   }
@@ -37,13 +40,13 @@ class Game {
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
     TDT = TDT+dt
     if (TDT > 1/60 || FPS % 5 == 0) {
-      
+      // methods to be updated at a somewhat constant speed
       Player_input.controls()
       dude.physics()
+      dude.animation() //Dibujando instancia de Guy
       COUNTER = COUNTER + TDT
       TDT = 0
       FPS = FPS + 1
-      
     }
     if (COUNTER > 1) {
       LAST_FPS = FPS
@@ -52,21 +55,25 @@ class Game {
       FPS = 0
     }
     this.draw()
+
   }
     static draw() {
-      Draw.clear(Color.BLACK) //Fondo
+      Draw.clear(Color.BLUE) //Fondo
       Floor.draw()
-      dude.draw() //Dibujando instancia de Guy
+      dude.draw(dude.current_sprite)
       Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
-      
-      
     }
 }
 
 class Guy {
   //getters
-  sprite_path {_sprite_path}
-  sprite {_sprite}
+  moving {_moving}
+  sprite_path {_sprite_path} //animation variables
+  sprites {_sprites} //animation variables
+  sprite_key {_sprite_key} //animation variables
+  sprite_last {_sprite_last} //animation variables
+  sprite_index {_sprite_index} //animation variables
+  sprite_direction {_sprite_direction} //animation variables
   width {_width}
   height {_height}
   x {_x}
@@ -76,32 +83,73 @@ class Guy {
   on_ground {_on_ground}
   vy {_vy} // velocidad en y
   jump_force {_jump_force}
+  current_sprite {_current_sprite}
   //setters
-  sprite_path=(value) {_path = value}
-  sprite=(value) {_sprite = value}
+  sprite_path=(value) {_path = value}  //animation variables
+  sprites=(value) {_sprites = value}  //animation variables
+  sprite_index=(value) {_sprite_index=value} //animation variables
+  sprite_direction=(value) {_sprite_direction=value} //animation variables
+  sprite_key=(value) {_sprite_key=value} //animation variables
+  sprite_last=(value) {_sprite_last=value} //animation variables
   x=(value) {_x= value}
   y=(value){_y= value}
   on_ground=(value) {_on_ground = value}
   vy=(value) {_vy = value} 
   jump_force=(value) {_jump_force = value}
+  current_sprite=(value) {_current_sprite = value}
+  moving=(value) {_moving = value}
 
-
-  construct new(x1,y1,width1,height1,path) {
+construct new(x1,y1,width1,height1,path,smap) {
     _sprite_path = path
     _x = x1
     _y = y1
     _width = width1
     _height = height1
-    _sprite = Surface.new_from_png(sprite_path)
+    // _sprites = Surface.new_from_png(sprite_path)
     _vy = 0
-    _speed = 2
+    _speed = 1
     _jump_force = -5
     _on_ground = false
     _gravity = 0.3
+    _sprites = smap
+    _sprite_index = 1
+    _sprite_direction= 0
+    _sprite_last = ""
   }
 
-   draw() {
-    Surface.draw(sprite, x, y, 1)
+  draw(current_sprite_param) {
+    Surface.draw_angle(current_sprite_param, x, y, sprite_direction)
+  }
+  animation () {
+    if (moving) {
+        sprite_key="Walk"
+    } else {
+        sprite_key="Idle"
+    }
+    var main = Fiber.current
+    
+    var fiber = Fiber.new{ |value|       
+      System.print((COUNTER * 100).floor)
+      if ((FPS) % 7  == 0) {
+        sprite_index= sprite_index + 1
+      }
+      if (sprite_index > sprites[sprite_key]) {
+        sprite_index= 1   
+      }
+      
+      main.transfer(Surface.new_from_png("%(sprite_path)%(sprite_key)%(sprite_index).png"))
+    }
+    
+    
+    
+    var proceed = sprite_last == sprite_key
+   
+    if (sprite_last != sprite_key) {
+        sprite_last = sprite_key
+        sprite_direction = sprite_direction
+        sprite_index = 1
+    }
+    current_sprite = fiber.transfer(proceed)
   }
   physics() {
     // Aplicar gravedad
@@ -109,8 +157,8 @@ class Guy {
     y = y + vy
 
     // Colisión con el piso
-    if (y + height >= FLOOR_Y) {
-      y = FLOOR_Y - height +1
+    if (y + height/2 >= FLOOR_Y ) {
+      y = FLOOR_Y - height/2 +1
       vy = 0.0
       on_ground = true
     } else {
@@ -139,17 +187,21 @@ class Floor {
 }
 
 class Player_input {
-  static controls() { 
+  static controls() {
+    Game.dude.moving = false
     if (Input.is_key_held(Input.get_keycode("W")) && Game.dude.on_ground) { //Jump
+      Game.dude.moving = true
       Game.dude.vy = Game.dude.jump_force
       Game.dude.on_ground = false
     }
     if (Input.is_key_held(Input.get_keycode("A"))) { //Move Right
       Game.dude.x = Game.dude.x - Game.dude.speed
+      Game.dude.moving = true
       // LOGS.write("moving right: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("D"))) { //Move left
       Game.dude.x = Game.dude.x + Game.dude.speed
+      Game.dude.moving = true
       // LOGS.write("moving left: guy x: %(Game.dude.x), width: %(WIDTH)\n")
     }
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
