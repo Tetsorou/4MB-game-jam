@@ -1,4 +1,4 @@
-POTETRE2D_PATH = potetre2d/build
+POTETRE2D_PATH = exes
 GAME_SRC_PATH = src
 GAME_MAIN = game.wren
 #				
@@ -60,6 +60,9 @@ package: clean amalgamate
 run: clean amalgamate
 	cp -r $(ASSETS) build/
 	cd build;$(POTETRE2D_EXE_FULL_PATH) game.wren
+correr: clean amalgamate
+	cp -r $(ASSETS) build/
+	cd build;$(shell pwd)/$(POTETRE2D_PATH)/potetre2d.exe game.wren
 
 clean:
 	$(RM) -rf build
