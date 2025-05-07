@@ -17,6 +17,8 @@ class Guy {
   vy {_vy} // velocidad en y
   jump_force {_jump_force}
   current_sprite {_current_sprite}
+  sprite_map {_sprite_map}
+
   //setters
   sprite_path=(value) {_path = value}  //animation variables
   sprites=(value) {_sprites = value}  //animation variables
@@ -31,6 +33,7 @@ class Guy {
   jump_force=(value) {_jump_force = value}
   current_sprite=(value) {_current_sprite = value}
   moving=(value) {_moving = value}
+  //  sprite_map=(value) {_sprite_map = value}
 
 construct new(x1,y1,width1,height1,path,smap) {
     _sprite_path = path
@@ -48,19 +51,25 @@ construct new(x1,y1,width1,height1,path,smap) {
     _sprite_index = 1
     _sprite_direction="Right"
     _sprite_last = ""
+    _sprite_map = {}
   }
 
   draw(current_sprite_param) {
-    Surface.draw_angle(current_sprite_param, x, y, 0)
+    
+    if (!sprite_map.containsKey(current_sprite_param)) {
+       _sprite_map[current_sprite_param] = Surface.new_from_png(current_sprite_param)
+    }
+    Surface.draw(sprite_map[current_sprite_param],x,y,1)
   }
+  
   animation () {
-    if (moving) {
+     if (moving) {
         sprite_key="Walk"
     } else {
         sprite_key="Idle"
     }
+    // Seleccion de sprite
     var main = Fiber.current
-    
     var fiber = Fiber.new{ |value|       
       if ((FPS) % 10  == 0) {
         sprite_index= sprite_index + 1
@@ -69,7 +78,7 @@ construct new(x1,y1,width1,height1,path,smap) {
         sprite_index= 1   
       }
       
-      main.transfer(Surface.new_from_png("%(sprite_path)%(sprite_key)%(sprite_index)%(sprite_direction).png"))
+      main.transfer("%(sprite_path)%(sprite_key)%(sprite_index)%(sprite_direction).png")
     }
 
     var proceed = sprite_last == sprite_key
@@ -87,18 +96,18 @@ construct new(x1,y1,width1,height1,path,smap) {
     y = y + vy
 
    
-    if (y + height/2 >= FLOOR_Y ) {
-      y = FLOOR_Y - height/2 +1
+    if (y  >= FLOOR_Y - height ) {
+      y = FLOOR_Y  - height +2
       vy = 0.0
       on_ground = true
     } else {
       on_ground = false
     }
-    if (x < 0 + width/3) {
-      x = 0 + width/3
+    if (x  < 0 ) {
+      x = 0 
     }
-    if (x  > WIDTH - width/3 ) {
-      x = WIDTH - width/3
+    if (x  > WIDTH - width ) {
+      x = WIDTH -width
     }
     if (y < 0) {
       y = 0 

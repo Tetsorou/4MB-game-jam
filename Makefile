@@ -63,7 +63,6 @@ run: clean amalgamate
 correr: clean amalgamate
 	cp -r $(ASSETS) build/
 	cd build;$(shell pwd)/$(POTETRE2D_PATH)/potetre2d.exe game.wren
-
 clean:
 	$(RM) -rf build
 

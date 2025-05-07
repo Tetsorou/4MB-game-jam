@@ -1,7 +1,3 @@
-/*
-  la linea 1 del documento es representada como 330 en los errores
-*/
-//
 // Configuracion de la ventana  
 var WIDTH = 320 //640
 var HEIGHT =180 //360
@@ -19,7 +15,6 @@ var COUNTER = 0
 var FPS = 0
 var LAST_FPS = 0
 
-var NUMBER_OF_TRUES = 0
 
 class Game {
   //instancia de Guy
@@ -35,37 +30,28 @@ class Game {
   
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
-    // LOGS = FileIO.open("./logs.txt", "write")
   }
 
   static tick(dt) {
     TDT = TDT+dt
-    if (TDT > 1/60) {
-        NUMBER_OF_TRUES = NUMBER_OF_TRUES + 1 
-    }
-    if (FPS % 10 == 0) {
-      NUMBER_OF_TRUES = NUMBER_OF_TRUES + 1 
-    }
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
-    
-    if (NUMBER_OF_TRUES == 1) {
-      NUMBER_OF_TRUES = 0
+    if (TDT > 1/60 || FPS % 10 == 0 ) {
       // methods to be updated at a somewhat constant speed
       Player_input.controls()
       dude.physics()
-      dude.animation() //Dibujando instancia de Guy
+      dude.animation_type() //Dibujando instancia de Guy
       COUNTER = COUNTER + TDT
       TDT = 0
       FPS = FPS + 1
     }
     if (COUNTER > 1) {
       LAST_FPS = FPS
-      // LOGS.write("FPS: %(FPS)")
       COUNTER = 0
       FPS = 0
     }
-    draw()
-
+    if (TDT > 1/120) {
+        draw()
+    }
   }
     static draw() {
       Draw.clear(Color.BLUE) //Fondo
