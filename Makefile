@@ -5,7 +5,7 @@ GAME_MAIN = game.wren
 GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
 				$(GAME_SRC_PATH)/game.wren     \
 			$(GAME_SRC_PATH)/player_input.wren \
-			 $(GAME_SRC_PATH)/floor.wren 
+			 $(GAME_SRC_PATH)/floor_old.wren 
 
 EDITOR_FILES =   $(GAME_SRC_PATH)/dude.wren \
 				$(GAME_SRC_PATH)/level_editor.wren     \
