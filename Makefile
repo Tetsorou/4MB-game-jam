@@ -3,9 +3,19 @@ GAME_SRC_PATH = src
 GAME_MAIN = game.wren
 #				
 GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
-				$(GAME_SRC_PATH)/game.wren      \
+				$(GAME_SRC_PATH)/game.wren     \
 			$(GAME_SRC_PATH)/player_input.wren \
 			 $(GAME_SRC_PATH)/floor.wren 
+
+EDITOR_FILES =   $(GAME_SRC_PATH)/dude.wren \
+				$(GAME_SRC_PATH)/level_editor.wren     \
+			$(GAME_SRC_PATH)/editor_input.wren \
+			$(GAME_SRC_PATH)/editor_block.wren \
+			 $(GAME_SRC_PATH)/editor_floor.wren  \
+			 $(GAME_SRC_PATH)/editor_ceiling.wren
+			 
+
+			  
 
 ASSETS = $(GAME_SRC_PATH)/sprites/*
 
@@ -35,6 +45,12 @@ amalgamate:
 	cat $(GAME_FILES) > build/$(GAME_MAIN)
 	@echo " == Done! =="
 	@echo " ** Result: build/$(GAME_MAIN) **"
+editor_amalgamate:
+	@echo " ** Amalgamating..."
+	@mkdir -p build
+	cat $(EDITOR_FILES) > build/$(GAME_MAIN)
+	@echo " == Done! =="
+	@echo " ** Result: build/$(GAME_MAIN) **"
 
 package: clean amalgamate
 	@echo " ** Building package..."
@@ -58,6 +74,10 @@ package: clean amalgamate
 	@echo -n " ** Zip size: "
 	@du -h build/game.zip | cut -f1
 run: clean amalgamate
+	cp -r $(ASSETS) build/
+	cd build;$(POTETRE2D_EXE_FULL_PATH) game.wren
+
+editor: clean editor_amalgamate
 	cp -r $(ASSETS) build/
 	cd build;$(POTETRE2D_EXE_FULL_PATH) game.wren
 correr: clean amalgamate

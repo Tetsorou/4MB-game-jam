@@ -1,5 +1,7 @@
 // Configuracion de la ventana  
-var WIDTH = 320 //640
+
+var TOOL_WIDTH = 80
+var WIDTH = 320//640
 var HEIGHT =180 //360
 var TITLE = "4MB-game-jam"
  
@@ -14,9 +16,7 @@ var LAST_FPS = 0
 
 var STOP = false
 
-
-
-class Level_editor {
+class Game {
       //instancia de Guy
   static dude {
     if (__dude == null) {
@@ -29,26 +29,26 @@ class Level_editor {
   }
   static floor {
     if (__floor == null) {
-      __floor = Floor.new("dirt/dirt",0,8)
+      __floor = Floor.new(Floor.DIRT,0,8)
     }
     return __floor
   }
   
   static init(args) {
-    Engine.init(WIDTH, HEIGHT, TITLE)
+    Engine.init(WIDTH+ TOOL_WIDTH , HEIGHT, TITLE)
   }
 
   static tick(dt) {
     TDT = TDT+dt
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
-    if ((TDT > 1/10 || FPS % 10 == 0) && !STOP)  {
+    if ((TDT > 1/60 || FPS % 10 == 0) && !STOP)  {
       // methods to be updated at a somewhat constant speed
-      Player_input.controls()
-    //   dude.physics()
-    //   dude.animation() //Dibujando instancia de Guy
-      COUNTER = COUNTER + TDT
-      TDT = 0
-      FPS = FPS + 1
+        Player_input.controls()
+        // dude.physics()
+        // dude.animation() //Dibujando instancia de Guy
+        COUNTER = COUNTER + TDT
+        TDT = 0
+        FPS = FPS + 1
     }
     fps_show()
     if (TDT > 1/120) {
@@ -65,7 +65,8 @@ class Level_editor {
     static draw() {
       Draw.clear(Color.new(33,38,63)) //Fondo
       floor.draw()
-      dude.draw(dude.current_sprite)
+    //   dude.draw(dude.current_sprite)
       Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
+      Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)
     }
 }
