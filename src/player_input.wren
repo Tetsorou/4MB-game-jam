@@ -8,7 +8,6 @@ class Player_input {
       Game.dude.vy = Game.dude.jump_force
       Game.dude.on_ground = false
       done = true
-      System.print("Jumped")
     }
      if (Input.is_key_held(Input.get_keycode("D")) && Input.is_key_held(Input.get_keycode("A")) && !done) { //Move Right
       Game.dude.moving = false

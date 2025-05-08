@@ -39,7 +39,7 @@ POTETRE2D_EXE_FULL_PATH = $(shell pwd)/$(POTETRE2D_EXE)
 
 # Get compression TOOL
 # TOOL/data_compress.*
-COMPRESSION_TOOL = $(shell find $(POTETRE2D_PATH)/TOOLs/ -name "data_compress*")
+COMPRESSION_TOOL = $(shell find $(POTETRE2D_PATH)/tools/ -name "data_compress*")
 ifeq ($(COMPRESSION_TOOL), )
 $(info [WARNING] Compression TOOL not found! (make TOOLs))
 else
@@ -70,7 +70,7 @@ package: clean amalgamate
 	@cp -r $(ASSETS) build/
 	@echo " ** Stripping..."
 	@echo "got here"
-	@$(POTETRE2D_EXE_FULL_PATH) TOOLs/compact.wren build/$(GAME_MAIN) small_$(GAME_MAIN)
+	@$(POTETRE2D_EXE_FULL_PATH) tools/compact.wren build/$(GAME_MAIN) small_$(GAME_MAIN)
 	@echo " ** Compressing game..."_$(GAME_MAIN) build/_game.wren
 	
 	@$(RM) build/$(GAME_MAIN)

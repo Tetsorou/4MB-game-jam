@@ -44,7 +44,7 @@ construct new(x1,y1,width1,height1,path,smap) {
     // _sprites = Surface.new_from_png(sprite_path)
     _vy = 0
     _speed = 1
-    _jump_force = -10
+    _jump_force = -5
     _on_ground = false
     _gravity = 0.3
     _sprites = smap
@@ -60,7 +60,6 @@ construct new(x1,y1,width1,height1,path,smap) {
        _sprite_map[current_sprite_param] = Surface.new_from_png(current_sprite_param)
        
     }
-    
     Surface.draw(sprite_map[current_sprite_param],x,y,1)
     
   }
