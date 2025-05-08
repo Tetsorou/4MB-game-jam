@@ -94,27 +94,27 @@ construct new(x1,y1,width1,height1,path,smap) {
   }
   physics() {
    
-    vy = vy + gravity
-    y = y + vy
+    // vy = vy + gravity
+    // y = y + vy
     // System.print("vy: %(vy) + %(gravity)")
     // System.print("y: %(y) + %(vy)")
-    if (y  >= Game.floor.y - height ) {
-      y = Game.floor.y  - height +2
-      vy = 0.0
-      on_ground = true
-    } else {
-      on_ground = false
-    }
-    if (x  < 0 ) {
-      x = 0 
-    }
-    if (x  > WIDTH - width ) {
-      x = WIDTH -width
-    }
-    if (y < 0) {
-      y = 0 
-      vy = 0.0
-    }
+    // if (y  >= Game.floor.y - height ) {
+      // y = Game.floor.y  - height +2
+      // vy = 0.0
+      // on_ground = true
+    // } else {
+      // on_ground = false
+    // }
+    // if (x  < 0 ) {
+      // x = 0 
+    // }
+    // if (x  > WIDTH - width ) {
+      // x = WIDTH -width
+    // }
+    // if (y < 0) {
+      // y = 0 
+      // vy = 0.0
+    // }
   }
 
 }
