@@ -15,8 +15,9 @@ var LAST_FPS = 0
 var STOP = false
 
 
-class Game {
-  //instancia de Guy
+
+class Level_editor {
+      //instancia de Guy
   static dude {
     if (__dude == null) {
       __dude = Guy.new(WIDTH / 2, HEIGHT / 2, 20, 20, "Soldier/Soldier", {
@@ -28,8 +29,6 @@ class Game {
   }
   static floor {
     if (__floor == null) {
-      System.print("Got here")
-
       __floor = Floor.new("dirt/dirt",0,8)
     }
     return __floor
@@ -45,20 +44,15 @@ class Game {
     if ((TDT > 1/10 || FPS % 10 == 0) && !STOP)  {
       // methods to be updated at a somewhat constant speed
       Player_input.controls()
-      dude.physics()
-      dude.animation() //Dibujando instancia de Guy
+    //   dude.physics()
+    //   dude.animation() //Dibujando instancia de Guy
       COUNTER = COUNTER + TDT
       TDT = 0
       FPS = FPS + 1
-      
-
     }
     fps_show()
     if (TDT > 1/120) {
         draw()
-        if (Input.is_key_pressed(Input.get_keycode("T"))) { //Safe Shutdown
-         STOP = !STOP
-        }
     }
   }
   static fps_show() {
@@ -75,5 +69,3 @@ class Game {
       Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
     }
 }
-
-

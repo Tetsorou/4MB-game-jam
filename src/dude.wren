@@ -44,7 +44,7 @@ construct new(x1,y1,width1,height1,path,smap) {
     // _sprites = Surface.new_from_png(sprite_path)
     _vy = 0
     _speed = 1
-    _jump_force = -5
+    _jump_force = -10
     _on_ground = false
     _gravity = 0.3
     _sprites = smap
@@ -58,10 +58,13 @@ construct new(x1,y1,width1,height1,path,smap) {
     
     if (!sprite_map.containsKey(current_sprite_param)) {
        _sprite_map[current_sprite_param] = Surface.new_from_png(current_sprite_param)
+       
     }
+    
     Surface.draw(sprite_map[current_sprite_param],x,y,1)
+    
   }
-  
+
   animation () {
      if (moving) {
         sprite_key="Walk"
@@ -94,10 +97,10 @@ construct new(x1,y1,width1,height1,path,smap) {
    
     vy = vy + gravity
     y = y + vy
-
-   
-    if (y  >= FLOOR_Y - height ) {
-      y = FLOOR_Y  - height +2
+    // System.print("vy: %(vy) + %(gravity)")
+    // System.print("y: %(y) + %(vy)")
+    if (y  >= Game.floor.y - height ) {
+      y = Game.floor.y  - height +2
       vy = 0.0
       on_ground = true
     } else {
