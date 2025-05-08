@@ -10,9 +10,18 @@ GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
 EDITOR_FILES =   $(GAME_SRC_PATH)/dude.wren \
 				$(GAME_SRC_PATH)/level_editor.wren     \
 			$(GAME_SRC_PATH)/editor_input.wren \
-			$(GAME_SRC_PATH)/editor_block.wren \
-			 $(GAME_SRC_PATH)/editor_floor.wren  \
-			 $(GAME_SRC_PATH)/editor_ceiling.wren
+			$(GAME_SRC_PATH)/block.wren \
+			 $(GAME_SRC_PATH)/floor.wren  \
+			 $(GAME_SRC_PATH)/ceiling.wren \
+			 $(GAME_SRC_PATH)/top_corner.wren \
+			 $(GAME_SRC_PATH)/bottom_corner.wren \
+			 $(GAME_SRC_PATH)/inside_corner.wren \
+			 $(GAME_SRC_PATH)/decorations.wren \
+			 $(GAME_SRC_PATH)/wall.wren \
+			 $(GAME_SRC_PATH)/level_maker.wren 
+
+
+
 			 
 
 			  
@@ -28,13 +37,13 @@ else
 endif
 POTETRE2D_EXE_FULL_PATH = $(shell pwd)/$(POTETRE2D_EXE)
 
-# Get compression tool
-# tool/data_compress.*
-COMPRESSION_TOOL = $(shell find $(POTETRE2D_PATH)/tools/ -name "data_compress*")
+# Get compression TOOL
+# TOOL/data_compress.*
+COMPRESSION_TOOL = $(shell find $(POTETRE2D_PATH)/TOOLs/ -name "data_compress*")
 ifeq ($(COMPRESSION_TOOL), )
-$(info [WARNING] Compression tool not found! (make tools))
+$(info [WARNING] Compression TOOL not found! (make TOOLs))
 else
-$(info [INFO] Compression tool found: $(COMPRESSION_TOOL))
+$(info [INFO] Compression TOOL found: $(COMPRESSION_TOOL))
 endif
 
 all: package
@@ -61,7 +70,7 @@ package: clean amalgamate
 	@cp -r $(ASSETS) build/
 	@echo " ** Stripping..."
 	@echo "got here"
-	@$(POTETRE2D_EXE_FULL_PATH) tools/compact.wren build/$(GAME_MAIN) small_$(GAME_MAIN)
+	@$(POTETRE2D_EXE_FULL_PATH) TOOLs/compact.wren build/$(GAME_MAIN) small_$(GAME_MAIN)
 	@echo " ** Compressing game..."_$(GAME_MAIN) build/_game.wren
 	
 	@$(RM) build/$(GAME_MAIN)

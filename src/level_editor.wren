@@ -36,14 +36,16 @@ class Game {
   
   static init(args) {
     Engine.init(WIDTH+ TOOL_WIDTH , HEIGHT, TITLE)
+     Draw.clear(Color.new(33,38,63))
+    
   }
 
   static tick(dt) {
     TDT = TDT+dt
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
-    if ((TDT > 1/60 || FPS % 10 == 0) && !STOP)  {
+    if ((TDT > 1/30 || FPS % 10 == 0) && !STOP)  {
+        draw()
       // methods to be updated at a somewhat constant speed
-        Player_input.controls()
         // dude.physics()
         // dude.animation() //Dibujando instancia de Guy
         COUNTER = COUNTER + TDT
@@ -52,8 +54,9 @@ class Game {
     }
     fps_show()
     if (TDT > 1/120) {
-        draw()
     }
+    Player_input.controls()
+
   }
   static fps_show() {
     if (COUNTER > 1) {
@@ -64,9 +67,10 @@ class Game {
   }
     static draw() {
       Draw.clear(Color.new(33,38,63)) //Fondo
-      floor.draw()
+    //   floor.draw()
+      Level_maker.draw_from_map()
     //   dude.draw(dude.current_sprite)
-      Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
+    //   Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
       Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)
     }
 }

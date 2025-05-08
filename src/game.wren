@@ -42,7 +42,7 @@ class Game {
   static tick(dt) {
     TDT = TDT+dt
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
-    if ((TDT > 1/10 || FPS % 10 == 0) && !STOP)  {
+    if ((TDT > 1/60 || FPS % 10 == 0) && !STOP)  {
       // methods to be updated at a somewhat constant speed
       Player_input.controls()
       dude.physics()
@@ -56,7 +56,7 @@ class Game {
     fps_show()
     if (TDT > 1/120) {
         draw()
-        if (Input.is_key_pressed(Input.get_keycode("T"))) { //Safe Shutdown
+        if (Input.is_key_held(Input.get_keycode("T"))) { //Safe Shutdown
          STOP = !STOP
         }
     }

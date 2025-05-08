@@ -1,8 +1,19 @@
 
-class Ceiling is Block{
+class Ceiling {
 static DIRT{"ceiling/dirt.png"}    
 static BRICK{"ceiling/brick.png"}    
 static GRASS{"ceiling/grass.png"}    
+height {_height}
+  width {_width}
+  x {_x}
+  y {_y}
+  surface {_surface}
+  width=(value) {_width = value}
+  height=(value) {_height = value}
+  x=(value) {_x= value}
+  y=(value){_y= value}
+  surface=(value) {_surface=value}
+  draw() {Surface.draw(surface,x,y,255)}
 construct new(path,x1,y1) {
   _x = x1
   _y = y1 //y1

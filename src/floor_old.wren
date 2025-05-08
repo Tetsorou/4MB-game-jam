@@ -18,7 +18,7 @@ class Floor {
   construct new(path,x1,y1) {
   _x = x1
   _y = HEIGHT - y1 //y1
-  _surface= Surface.new_from_png("dirt/dirt2.png")
+  _surface= Surface.new_from_png("floor/dirt.png")
   // System.print("%(path)2.png")
   _width = Surface.get_width(surface)
   _height = Surface.get_height(surface)
