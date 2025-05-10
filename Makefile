@@ -6,7 +6,6 @@ GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
 			$(GAME_SRC_PATH)/main.wren     \
 			$(GAME_SRC_PATH)/player_input.wren \
 			$(GAME_SRC_PATH)/tiles.wren \
-			$(GAME_SRC_PATH)/physics.wren \
 			 $(GAME_SRC_PATH)/level_test_1.wren
 
 EDITOR_FILES = $(GAME_SRC_PATH)/level_editor.wren  \
