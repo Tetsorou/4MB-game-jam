@@ -18,25 +18,27 @@ var STOP = false
 
 class Game {
       //instancia de Guy
-  static dude {
-    if (__dude == null) {
-      __dude = Guy.new(WIDTH / 2, HEIGHT / 2, 20, 20, "Soldier/Soldier", {
-        "Idle":6,
-        "Walk":8
-      })
-    }
-    return __dude
-  }
-  static floor {
-    if (__floor == null) {
-      __floor = Floor.new(Floor.DIRT,0,8)
-    }
-    return __floor
-  }
+  // static dude {
+  //   if (__dude == null) {
+  //     __dude = Guy.new(WIDTH / 2, HEIGHT / 2, 20, 20, "Soldier/Soldier", {
+  //       "Idle":6,
+  //       "Walk":8
+  //     })
+  //   }
+  //   return __dude
+  // }
+  // static floor {
+  //   if (__floor == null) {
+  //     __floor = Floor.new(Floor.DIRT,0,8)
+  //   }
+  //   return __floor
+  // }
   
   static init(args) {
     Engine.init(WIDTH+ TOOL_WIDTH , HEIGHT, TITLE)
-     Draw.clear(Color.new(33,38,63))
+    Draw.clear(Color.new(33,38,63))
+    Tiles.init()
+    Physics.init()
     
   }
 
@@ -68,7 +70,10 @@ class Game {
     static draw() {
       Draw.clear(Color.new(33,38,63)) //Fondo
     //   floor.draw()
-      Level_maker.draw_from_map()
+
+        Level_maker.draw_from_map()
+        Draw.rectangle(356,86,16,16,100,100,100,255,false)
+        Surface.draw(Tiles.all_sprites["%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])"], 360 , 90, 255)
     //   dude.draw(dude.current_sprite)
     //   Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
       Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)

@@ -16,13 +16,8 @@ GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
 
 EDITOR_FILES = $(GAME_SRC_PATH)/level_editor.wren  \
 			$(GAME_SRC_PATH)/editor_input.wren \
-			 $(GAME_SRC_PATH)/floor.wren  \
-			 $(GAME_SRC_PATH)/ceiling.wren \
-			 $(GAME_SRC_PATH)/top_corner.wren \
-			 $(GAME_SRC_PATH)/bottom_corner.wren \
-			 $(GAME_SRC_PATH)/inside_corner.wren \
-			 $(GAME_SRC_PATH)/decorations.wren \
-			 $(GAME_SRC_PATH)/wall.wren \
+			$(GAME_SRC_PATH)/tiles.wren \
+			$(GAME_SRC_PATH)/physics.wren \
 			 $(GAME_SRC_PATH)/level_maker.wren 
 				
 
