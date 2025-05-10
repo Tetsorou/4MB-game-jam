@@ -31,6 +31,7 @@ class Game {
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
      Draw.clear(Color.new(33,38,63))
+     Tiles.init()
     Level_test.init()
   }
 
