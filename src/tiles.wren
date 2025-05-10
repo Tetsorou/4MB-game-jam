@@ -5,10 +5,6 @@ class Tiles {
     static tile_materials {__tile_materials}
     static all_sprites {__all_sprites}
 
-    // tile_materials[tile_type] = (materials) { _tile_materials[tile_type] = materials}
-    // all_sprites[tile_type_material] = (surface_id) {_all_sprites[tile_type_material] = surface_id}
-
-
     static init() {
         __tile_materials = {}
         __all_sprites = {}
@@ -20,7 +16,7 @@ class Tiles {
             while (map.value.count > i) {
                 var surface = Surface.new_from_png("%(map.key)/%(map.value[i]).png")  
                 all_sprites["%(map.key)/%(map.value[i])"] = surface
-
+                
                 i = i + 1
             }
             tile.insert(loops,map.key)

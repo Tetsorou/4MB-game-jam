@@ -1,38 +1,41 @@
 
-var BLOCK_MAP = {}
-var POSITION_MAP = {}
 var OUTPUT = FileIO.open("level_test_1.wren", "w")
 // var MAP_ID =
 class Level_maker {
     static save_file() {
         OUTPUT.write("\n")
-        OUTPUT.write("var BLOCK_MAP_1 = {-1:null}\n")
-        OUTPUT.write(" class Level_test_1 { \n")
-        OUTPUT.write("static level() { \n")
-        OUTPUT.write("      var a = \"\" \n")
-        OUTPUT.write("for (map in BLOCK_MAP_1 ) { \n") 
-            OUTPUT.write("if (%(BLOCK_MAP.count) > BLOCK_MAP_1.count || map.key == -1) {\n")
-            OUTPUT.write("BLOCK_MAP_1.remove(-1)\n")
-            for (map in BLOCK_MAP) { // true loop
-                OUTPUT.write("%(map.value)\n")
-                OUTPUT.write("a.draw()\n")
-                OUTPUT.write("BLOCK_MAP_1[a.surface] = Vector.new%(POSITION_MAP[map.key])\n")
-        } // true loop
-        OUTPUT.write("}   ")
-        OUTPUT.write("else {\n")
-        OUTPUT.write("Surface.draw(map.key,BLOCK_MAP_1[map.key].x,BLOCK_MAP_1[map.key].y,255 )\n")
-        OUTPUT.write("}\n") 
+        OUTPUT.write("class level_test { \n")
+        OUTPUT.write("    static level_position {__level_position}\n")
+        OUTPUT.write("    static relative_level_id {__relative_level_id}\n")
+        OUTPUT.write("    static level_position_id {__level_position_id}\n")
+        OUTPUT.write("\n")
+        OUTPUT.write("    static init() {\n")
+        for (map in Physics.relative_id) {
+            OUTPUT.write("__relative_level_id[__relative_level_id.count]=\"%(map.value)\"\n")
+            OUTPUT.write("__level_position[__level_position.count] = Vector.new%(Physics.position[map.key])\n")
+
+            OUTPUT.write("if (__level_position_id.containsKey[\"%(Physics.position[map.key])\"]) {\n")
+                OUTPUT.write("__level_position_id[\"%(Physics.position[map.key])\"].insert(__level_position_id.count,__level_position_id.count)\n")
+            OUTPUT.write("} else {\n")
+                OUTPUT.write("__level_position_id[\"%(Physics.position[map.key])\"] = __level_position_id.count\n")
+            OUTPUT.write("}\n")
+        }
     OUTPUT.write("}\n")
-    OUTPUT.write("}\n")  
-    OUTPUT.write("}\n")  
+    OUTPUT.write("static draw_from_map() {\n")
+        OUTPUT.write("if (relative_level_id.count >= 1) {\n")
+            OUTPUT.write("for (map in relative_level_id) {\n")
+             OUTPUT.write("Surface.draw(Tiles.all_sprites[map.value], level_position[map.key].x  ,level_position[map.key].y ,255)\n")
+            OUTPUT.write("}\n")
+        OUTPUT.write("}\n")
+    OUTPUT.write("}\n")
+OUTPUT.write("}\n")
+        
        
     }
     static draw_from_map() {
         if (Physics.relative_id.count >= 1) {
             for (map in Physics.relative_id) {
-            // System.print("------------------------")
              Surface.draw(Tiles.all_sprites[map.value], Physics.position[map.key].x  ,Physics.position[map.key].y ,255)
-
             }
         }
         

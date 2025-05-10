@@ -17,7 +17,7 @@ class Player_input {
     }
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
       // LOGS.close()
-    //   Level_maker.save_file()
+      Level_maker.save_file()
       OUTPUT.close()
       Engine.destroy()
     }
