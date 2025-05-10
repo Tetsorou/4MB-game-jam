@@ -10,6 +10,9 @@ class Level_maker {
         OUTPUT.write("    static level_position_id {__level_position_id}\n")
         OUTPUT.write("\n")
         OUTPUT.write("    static init() {\n")
+        OUTPUT.write("    __level_position = {}")
+        OUTPUT.write("    __level_position_id = {}")
+        OUTPUT.write("    __relative_level_id = {}")
         for (map in Physics.relative_id) {
             OUTPUT.write("__relative_level_id[__relative_level_id.count]=\"%(map.value)\"\n")
             OUTPUT.write("__level_position[__level_position.count] = Vector.new%(Physics.position[map.key])\n")

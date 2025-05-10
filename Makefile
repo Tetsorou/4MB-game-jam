@@ -5,13 +5,8 @@ GAME_MAIN = game.wren
 GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
 			$(GAME_SRC_PATH)/main.wren     \
 			$(GAME_SRC_PATH)/player_input.wren \
-			 $(GAME_SRC_PATH)/floor.wren \
-			$(GAME_SRC_PATH)/ceiling.wren \
-			 $(GAME_SRC_PATH)/top_corner.wren \
-			 $(GAME_SRC_PATH)/bottom_corner.wren \
-			 $(GAME_SRC_PATH)/inside_corner.wren \
-			 $(GAME_SRC_PATH)/decorations.wren \
-			 $(GAME_SRC_PATH)/wall.wren \
+			$(GAME_SRC_PATH)/tiles.wren \
+			$(GAME_SRC_PATH)/physics.wren \
 			 $(GAME_SRC_PATH)/level_test_1.wren
 
 EDITOR_FILES = $(GAME_SRC_PATH)/level_editor.wren  \
