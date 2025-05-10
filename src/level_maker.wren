@@ -34,6 +34,7 @@ class Level_maker {
     static draw_from_map() {
         for (map in BLOCK_MAP ) {
             Surface.draw(map.key,POSITION_MAP[map.key].x,POSITION_MAP[map.key].y,1)
+            // System.print("levelmaker id %(map.key)")
             
         }
     }

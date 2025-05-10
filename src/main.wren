@@ -29,7 +29,7 @@ class Game {
   }
   
   static init(args) {
-    Engine.init(WIDTH+ TOOL_WIDTH , HEIGHT, TITLE)
+    Engine.init(WIDTH, HEIGHT, TITLE)
      Draw.clear(Color.new(33,38,63))
     
   }
@@ -41,6 +41,7 @@ class Game {
       // methods to be updated at a somewhat constant speed
          dude.physics()
         dude.animation() //Dibujando instancia de Guy
+         fps_show()
         COUNTER = COUNTER + TDT
         TDT = 0
         FPS = FPS + 1
@@ -48,7 +49,7 @@ class Game {
         draw()
 
     }
-    fps_show()
+   
     if (TDT > 1/120) {
     }
 
