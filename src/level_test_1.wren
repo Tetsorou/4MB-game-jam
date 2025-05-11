@@ -8,173 +8,208 @@ class Level_test {
     __level_position = {}
     __level_position_id = {}
     __relative_level_id = {}
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(167, 93)
-if (__level_position_id.containsKey("(167, 93)")) {
-__level_position_id["(167, 93)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(208, 88)
+if (__level_position_id.containsKey("(208, 88)")) {
+__level_position_id["(208, 88)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(167, 93)"] = __level_position_id.count
+__level_position_id["(208, 88)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(192, 74)
-if (__level_position_id.containsKey("(192, 74)")) {
-__level_position_id["(192, 74)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(176, 56)
+if (__level_position_id.containsKey("(176, 56)")) {
+__level_position_id["(176, 56)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(192, 74)"] = __level_position_id.count
+__level_position_id["(176, 56)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(276, 77)
-if (__level_position_id.containsKey("(276, 77)")) {
-__level_position_id["(276, 77)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(152, 72)
+if (__level_position_id.containsKey("(152, 72)")) {
+__level_position_id["(152, 72)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(276, 77)"] = __level_position_id.count
+__level_position_id["(152, 72)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(174, 126)
-if (__level_position_id.containsKey("(174, 126)")) {
-__level_position_id["(174, 126)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(264, 112)
+if (__level_position_id.containsKey("(264, 112)")) {
+__level_position_id["(264, 112)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(174, 126)"] = __level_position_id.count
+__level_position_id["(264, 112)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(140, 66)
-if (__level_position_id.containsKey("(140, 66)")) {
-__level_position_id["(140, 66)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(200, 24)
+if (__level_position_id.containsKey("(200, 24)")) {
+__level_position_id["(200, 24)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(140, 66)"] = __level_position_id.count
+__level_position_id["(200, 24)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(238, 39)
-if (__level_position_id.containsKey("(238, 39)")) {
-__level_position_id["(238, 39)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(224, 104)
+if (__level_position_id.containsKey("(224, 104)")) {
+__level_position_id["(224, 104)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(238, 39)"] = __level_position_id.count
+__level_position_id["(224, 104)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(230, 69)
-if (__level_position_id.containsKey("(230, 69)")) {
-__level_position_id["(230, 69)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(88, 104)
+if (__level_position_id.containsKey("(88, 104)")) {
+__level_position_id["(88, 104)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(230, 69)"] = __level_position_id.count
+__level_position_id["(88, 104)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(202, 115)
-if (__level_position_id.containsKey("(202, 115)")) {
-__level_position_id["(202, 115)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(192, 136)
+if (__level_position_id.containsKey("(192, 136)")) {
+__level_position_id["(192, 136)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(202, 115)"] = __level_position_id.count
+__level_position_id["(192, 136)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(195, 86)
-if (__level_position_id.containsKey("(195, 86)")) {
-__level_position_id["(195, 86)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(256, 24)
+if (__level_position_id.containsKey("(256, 24)")) {
+__level_position_id["(256, 24)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(195, 86)"] = __level_position_id.count
+__level_position_id["(256, 24)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(244, 61)
-if (__level_position_id.containsKey("(244, 61)")) {
-__level_position_id["(244, 61)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(168, 56)
+if (__level_position_id.containsKey("(168, 56)")) {
+__level_position_id["(168, 56)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(244, 61)"] = __level_position_id.count
+__level_position_id["(168, 56)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(202, 127)
-if (__level_position_id.containsKey("(202, 127)")) {
-__level_position_id["(202, 127)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(136, 88)
+if (__level_position_id.containsKey("(136, 88)")) {
+__level_position_id["(136, 88)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(202, 127)"] = __level_position_id.count
+__level_position_id["(136, 88)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(138, 105)
-if (__level_position_id.containsKey("(138, 105)")) {
-__level_position_id["(138, 105)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(136, 144)
+if (__level_position_id.containsKey("(136, 144)")) {
+__level_position_id["(136, 144)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(138, 105)"] = __level_position_id.count
+__level_position_id["(136, 144)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(155, 48)
-if (__level_position_id.containsKey("(155, 48)")) {
-__level_position_id["(155, 48)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(248, 152)
+if (__level_position_id.containsKey("(248, 152)")) {
+__level_position_id["(248, 152)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(155, 48)"] = __level_position_id.count
+__level_position_id["(248, 152)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(266, 50)
-if (__level_position_id.containsKey("(266, 50)")) {
-__level_position_id["(266, 50)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(160, 96)
+if (__level_position_id.containsKey("(160, 96)")) {
+__level_position_id["(160, 96)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(266, 50)"] = __level_position_id.count
+__level_position_id["(160, 96)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(160, 63)
-if (__level_position_id.containsKey("(160, 63)")) {
-__level_position_id["(160, 63)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(72, 64)
+if (__level_position_id.containsKey("(72, 64)")) {
+__level_position_id["(72, 64)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(160, 63)"] = __level_position_id.count
+__level_position_id["(72, 64)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(179, 108)
-if (__level_position_id.containsKey("(179, 108)")) {
-__level_position_id["(179, 108)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(240, 56)
+if (__level_position_id.containsKey("(240, 56)")) {
+__level_position_id["(240, 56)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(179, 108)"] = __level_position_id.count
+__level_position_id["(240, 56)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(248, 90)
-if (__level_position_id.containsKey("(248, 90)")) {
-__level_position_id["(248, 90)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(176, 80)
+if (__level_position_id.containsKey("(176, 80)")) {
+__level_position_id["(176, 80)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(248, 90)"] = __level_position_id.count
+__level_position_id["(176, 80)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(207, 83)
-if (__level_position_id.containsKey("(207, 83)")) {
-__level_position_id["(207, 83)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(288, 56)
+if (__level_position_id.containsKey("(288, 56)")) {
+__level_position_id["(288, 56)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(207, 83)"] = __level_position_id.count
+__level_position_id["(288, 56)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(204, 65)
-if (__level_position_id.containsKey("(204, 65)")) {
-__level_position_id["(204, 65)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(152, 64)
+if (__level_position_id.containsKey("(152, 64)")) {
+__level_position_id["(152, 64)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(204, 65)"] = __level_position_id.count
+__level_position_id["(152, 64)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(269, 119)
-if (__level_position_id.containsKey("(269, 119)")) {
-__level_position_id["(269, 119)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(128, 104)
+if (__level_position_id.containsKey("(128, 104)")) {
+__level_position_id["(128, 104)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(269, 119)"] = __level_position_id.count
+__level_position_id["(128, 104)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(137, 78)
-if (__level_position_id.containsKey("(137, 78)")) {
-__level_position_id["(137, 78)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(176, 152)
+if (__level_position_id.containsKey("(176, 152)")) {
+__level_position_id["(176, 152)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(137, 78)"] = __level_position_id.count
+__level_position_id["(176, 152)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(208, 41)
-if (__level_position_id.containsKey("(208, 41)")) {
-__level_position_id["(208, 41)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(248, 120)
+if (__level_position_id.containsKey("(248, 120)")) {
+__level_position_id["(248, 120)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(208, 41)"] = __level_position_id.count
+__level_position_id["(248, 120)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(281, 56)
-if (__level_position_id.containsKey("(281, 56)")) {
-__level_position_id["(281, 56)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(152, 88)
+if (__level_position_id.containsKey("(152, 88)")) {
+__level_position_id["(152, 88)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(281, 56)"] = __level_position_id.count
+__level_position_id["(152, 88)"] = __level_position_id.count
 }
-__relative_level_id[__relative_level_id.count]="top_corner/grass"
-__level_position[__level_position.count] = Vector.new(243, 76)
-if (__level_position_id.containsKey("(243, 76)")) {
-__level_position_id["(243, 76)"].insert(__level_position_id.count,__level_position_id.count)
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(128, 64)
+if (__level_position_id.containsKey("(128, 64)")) {
+__level_position_id["(128, 64)"].insert(__level_position_id.count,__level_position_id.count)
 } else {
-__level_position_id["(243, 76)"] = __level_position_id.count
+__level_position_id["(128, 64)"] = __level_position_id.count
+}
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(248, 80)
+if (__level_position_id.containsKey("(248, 80)")) {
+__level_position_id["(248, 80)"].insert(__level_position_id.count,__level_position_id.count)
+} else {
+__level_position_id["(248, 80)"] = __level_position_id.count
+}
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(112, 32)
+if (__level_position_id.containsKey("(112, 32)")) {
+__level_position_id["(112, 32)"].insert(__level_position_id.count,__level_position_id.count)
+} else {
+__level_position_id["(112, 32)"] = __level_position_id.count
+}
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(144, 80)
+if (__level_position_id.containsKey("(144, 80)")) {
+__level_position_id["(144, 80)"].insert(__level_position_id.count,__level_position_id.count)
+} else {
+__level_position_id["(144, 80)"] = __level_position_id.count
+}
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(128, 136)
+if (__level_position_id.containsKey("(128, 136)")) {
+__level_position_id["(128, 136)"].insert(__level_position_id.count,__level_position_id.count)
+} else {
+__level_position_id["(128, 136)"] = __level_position_id.count
+}
+__relative_level_id[__relative_level_id.count]="ceiling/grass"
+__level_position[__level_position.count] = Vector.new(224, 160)
+if (__level_position_id.containsKey("(224, 160)")) {
+__level_position_id["(224, 160)"].insert(__level_position_id.count,__level_position_id.count)
+} else {
+__level_position_id["(224, 160)"] = __level_position_id.count
 }
 }
 static draw_from_map() {

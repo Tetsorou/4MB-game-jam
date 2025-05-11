@@ -39,12 +39,12 @@ class Player_input {
         if (Input.is_key_pressed(Keycodes.LEFT)) {
             Physics.relative_id[ID]="%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])"
             // System.print("%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])")
-            Physics.position[ID] = Input.mouse_pos()
+            Physics.position[ID] = Vector.new((Input.mouse_x()/8).floor * 8, (Input.mouse_y()/8).floor * 8)
             // System.print("mouse pos: %(Input.mouse_pos())")
-            if (Physics.id_position.containsKey("%(Input.mouse_pos().x),%(Input.mouse_pos().y)")) {
-                Physics.id_position["%(Input.mouse_pos().x),%(Input.mouse_pos().y)"].insert(Physics.id_position["%(Input.mouse_pos().x),%(Input.mouse_pos().y)"].count ,ID)
+            if (Physics.id_position.containsKey("%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)")) {
+                Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"].insert(Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"].count ,ID)
             } else {
-                Physics.id_position["%(Input.mouse_pos().x),%(Input.mouse_pos().y)"] = [ID]
+                Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"] = [ID]
             }
             ID = ID + 1
         }

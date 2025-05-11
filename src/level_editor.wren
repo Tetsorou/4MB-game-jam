@@ -73,7 +73,7 @@ class Game {
 
         Level_maker.draw_from_map()
         Draw.rectangle(356,86,16,16,100,100,100,255,false)
-        Surface.draw(Tiles.all_sprites["%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])"], 360 , 90, 255)
+        Surface.draw(Tiles.all_sprites["%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])"], (Input.mouse_x()/8).floor * 8, (Input.mouse_y()/8).floor * 8, 255)
     //   dude.draw(dude.current_sprite)
     //   Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
       Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)
