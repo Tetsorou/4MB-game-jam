@@ -25,7 +25,7 @@ class Player_input {
       Game.dude.sprite_direction="Right"
       done = true
     }
-    if (Input.is_key_pressed(1)) { //Safe Shutdown
+    if (Input.is_key_pressed(Input.get_keycode("L"))) { //Safe Shutdown
       // LOGS.close()
       Engine.destroy()
     }
