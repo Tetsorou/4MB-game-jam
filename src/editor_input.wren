@@ -1,8 +1,9 @@
 
-var TOOL = ""
+var TOOL = "PLACE"
 var TILE_INDEX = 0
 var MATERIAL_INDEX = 0
 var ID = 1
+var LAYER = 0
 
 class Player_input {
 
@@ -42,9 +43,10 @@ class Player_input {
             Physics.position[ID] = Vector.new((Input.mouse_x()/8).floor * 8, (Input.mouse_y()/8).floor * 8)
             // System.print("mouse pos: %(Input.mouse_pos())")
             if (Physics.id_position.containsKey("%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)")) {
-                Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"].insert(Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"].count ,ID)
+                Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"].insert(LAYER,ID)
             } else {
                 Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"] = [ID]
+                // what happens when an empty layer sits in between say, layer 0 and 2
             }
             ID = ID + 1
         }
