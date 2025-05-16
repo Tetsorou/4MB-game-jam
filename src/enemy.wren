@@ -52,11 +52,12 @@ class Enemy {
     _sprite_last = ""
     _sprite_map = {}
     _ia_timer = 0
-    _ia_interval = 2 // segundos para cambiar de dirección
+    _ia_interval = 2 // segundos para cambiar de direccion
   }
 
   draw(current_sprite_param) {
     if (!_sprite_map.containsKey(current_sprite_param)) {
+      System.print(current_sprite_param)
       _sprite_map[current_sprite_param] = Surface.new_from_png(current_sprite_param)
     }
     Surface.draw(_sprite_map[current_sprite_param], x, y, 1)
@@ -69,10 +70,10 @@ class Enemy {
       sprite_key = "Idle"
     }
 
-    // Selección de sprite
+    // Seleccion de sprite
     var main = Fiber.current
     var fiber = Fiber.new {
-      while (true) {
+   
         if ((FPS) % 10 == 0) {
           sprite_index = sprite_index + 1
         }
@@ -80,55 +81,55 @@ class Enemy {
           sprite_index = 1
         }
         main.transfer("%(sprite_path)%(sprite_key)%(sprite_index)%(sprite_direction).png")
-      }
     }
 
     var proceed = sprite_last == sprite_key
 
     if (!proceed) {
       sprite_last = sprite_key
+        sprite_last = sprite_direction // lo puse yo
       sprite_index = 1
     }
     current_sprite = fiber.transfer(proceed)
   }
 
-auto_move(dt) {
-  _ia_timer = _ia_timer + dt
+auto_move() {
+  // _ia_timer = _ia_timer + dt
 
-  if (_ia_timer >= _ia_interval) {
-    // Obtener la posición del personaje Guy
+  // if (_ia_timer >= _ia_interval) {
+    // Obtener la posicion del personaje Guy
     var guy_x = Game.dude.x
     var distance_to_guy = (guy_x - x).abs // Distancia absoluta al personaje
 
-    // Cambiar dirección en función de la distancia al personaje
-    if (distance_to_guy > 50) { // Si está lejos, acercarse
+    // Cambiar direccion en funcion de la distancia al personaje
+    if (distance_to_guy > 50) { // Si esta lejos, acercarse
       if (guy_x > x) {
         _sprite_direction = "Right"
       } else {
         _sprite_direction = "Left"
       }
-    } else if (distance_to_guy <= 20) { // Si está muy cerca, alejarse
+    } else if (distance_to_guy <= 20) { // Si esta muy cerca, alejarse
       if (guy_x > x) {
         _sprite_direction = "Left"
       } else {
         _sprite_direction = "Right"
       }
     } else {
-      // Si está a una distancia intermedia, moverse aleatoriamente
-      if ((Random.next * 2).floor == 0) {
+      // Si esta a una distancia intermedia, moverse aleatoriamente
+      if ((Random.rand() * 2).floor == 0) {
         _sprite_direction = "Left"
       } else {
         _sprite_direction = "Right"
       }
     }
 
-    _ia_timer = 0
-  }
+    // _ia_timer = 0
+  // }
 
-  // Movimiento con validación de límites
+  // Movimiento con validacion de limites
   moving = true
   if (_sprite_direction == "Right") {
-    x = Math.min(x + _speed, Game.WIDTH - _width)
+    x = Math.min(x + _speed, WIDTH - _width)
   } else {
     x = Math.max(x - _speed, 0)
   }

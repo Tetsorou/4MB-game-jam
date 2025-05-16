@@ -50,6 +50,7 @@ class Game {
       // methods to be updated at a somewhat constant speed
          dude.physics()
         dude.animation() //Dibujando instancia de Guy
+        enemy.animation()
          fps_show()
         COUNTER = COUNTER + TDT
         TDT = 0
@@ -60,6 +61,7 @@ class Game {
     }
    
     if (TDT > 1/120) {
+      __enemy.auto_move()
     }
 
   }
@@ -78,7 +80,7 @@ class Game {
       Level_test_1.level()
        Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
        dude.draw(dude.current_sprite)
-       enemy.draw(dude.current_sprite) // Dibujar al enemigo
+       enemy.draw(enemy.current_sprite) // Dibujar al enemigo
       // Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)
     }
 }
