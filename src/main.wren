@@ -27,6 +27,15 @@ class Game {
     }
     return __dude
   }
+    static enemy {
+    if (__enemy == null) {
+      __enemy = Enemy.new(100, 100, 20, 20, "Soldier/Soldier", {
+        "Idle": 6,
+        "Walk": 8
+      })
+    }
+    return __enemy
+  }
   
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
@@ -69,6 +78,7 @@ class Game {
       Level_test_1.level()
        Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
        dude.draw(dude.current_sprite)
+       enemy.draw(dude.current_sprite) // Dibujar al enemigo
       // Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)
     }
 }
