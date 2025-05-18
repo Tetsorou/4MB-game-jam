@@ -48,9 +48,11 @@ class Game {
     //Hace que el juego corra a 60 fps constantes, excepto el proceso de dibujo
     if ((TDT > 1/60 || FPS % 10 == 0) && !STOP)  {
       // methods to be updated at a somewhat constant speed
-         dude.physics()
+        dude.physics()
         dude.animation() //Dibujando instancia de Guy
         enemy.animation()
+        //enemy.tick()
+
          fps_show()
         COUNTER = COUNTER + TDT
         TDT = 0

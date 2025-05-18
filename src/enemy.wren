@@ -34,6 +34,12 @@ class Enemy {
   current_sprite=(value) {_current_sprite = value}
   moving=(value) {_moving = value}
 
+  sprite_last_dir {_sprite_last_dir}
+  sprite_last_dir=(value) {_sprite_last_dir = value}
+
+
+
+
   // Constructor
   construct new(x1, y1, width1, height1, path, smap) {
     _sprite_path = path
@@ -53,6 +59,15 @@ class Enemy {
     _sprite_map = {}
     _ia_timer = 0
     _ia_interval = 2 // segundos para cambiar de direccion
+    _sprite_last_dir = ""
+    _dt = 0
+
+    _sprite_last_dir = ""
+    _dt = 0
+    _state = "idle"         
+    _state_timer = 0 
+
+
   }
 
   draw(current_sprite_param) {
@@ -63,68 +78,167 @@ class Enemy {
     Surface.draw(_sprite_map[current_sprite_param], x, y, 1)
   }
 
-  animation() {
-    if (moving) {
-      sprite_key = "Walk"
-    } else {
-      sprite_key = "Idle"
+animation() {
+  if (moving) {
+    sprite_key = "Walk"
+  } else {
+    sprite_key = "Idle"
+  }
+  //no se que esto :v
+
+  var main = Fiber.current
+  var fiber = Fiber.new {
+    if ((FPS % 10) == 0) {
+      sprite_index = sprite_index + 1
     }
 
-    // Seleccion de sprite
-    var main = Fiber.current
-    var fiber = Fiber.new {
-   
-        if ((FPS) % 10 == 0) {
-          sprite_index = sprite_index + 1
-        }
-        if (sprite_index > sprites[sprite_key]) {
-          sprite_index = 1
-        }
-        main.transfer("%(sprite_path)%(sprite_key)%(sprite_index)%(sprite_direction).png")
-    }
-
-    var proceed = sprite_last == sprite_key
-
-    if (!proceed) {
-      sprite_last = sprite_key
-        sprite_last = sprite_direction // lo puse yo
+    if (sprite_index > sprites[sprite_key]) {
       sprite_index = 1
     }
-    current_sprite = fiber.transfer(proceed)
+
+    var ruta = sprite_path + sprite_key + sprite_index.toString + sprite_direction + ".png"
+    main.transfer(ruta)
   }
 
+  var proceder = false
+  if (sprite_last == sprite_key && sprite_last_dir == sprite_direction) {
+    proceder = true
+  }
+
+  if (!proceder) {
+    sprite_last = sprite_key
+    sprite_last_dir = sprite_direction
+    sprite_index = 1
+  }
+
+  current_sprite = fiber.transfer()
+}
 auto_move() {
-  // _ia_timer = _ia_timer + dt
+  var guy_x = Game.dude.x
+  var distance_to_guy = (guy_x - x).abs
 
-  // if (_ia_timer >= _ia_interval) {
-    // Obtener la posicion del personaje Guy
-    var guy_x = Game.dude.x
-    var distance_to_guy = (guy_x - x).abs // Distancia absoluta al personaje
+  // Actualizar temporizador de estado (por frames)
+  if (_state_timer > 0) _state_timer = _state_timer - 1
 
-    // Cambiar direccion en funcion de la distancia al personaje
-    if (distance_to_guy > 50) { // Si esta lejos, acercarse
-      if (guy_x > x) {
-        _sprite_direction = "Right"
-      } else {
-        _sprite_direction = "Left"
-      }
-    } else if (distance_to_guy <= 20) { // Si esta muy cerca, alejarse
-      if (guy_x > x) {
-        _sprite_direction = "Left"
-      } else {
-        _sprite_direction = "Right"
-      }
+  if (_state == "flee") {
+    // Huir durante 3 segundos (180 frames a 60 FPS)
+    moving = true
+    if (_sprite_direction == "Right") {
+      x = Math.min(x + _speed, WIDTH - _width)
     } else {
-      // Si esta a una distancia intermedia, moverse aleatoriamente
-      if ((Random.rand() * 2).floor == 0) {
-        _sprite_direction = "Left"
-      } else {
-        _sprite_direction = "Right"
-      }
+      x = Math.max(x - _speed, 0)
     }
+    if (_state_timer == 0) {
+      _state = "observe"
+      _state_timer = 90 // observar 1.5 segundos (90 frames)
+      moving = false
+    }
+    return
+  }
 
-    // _ia_timer = 0
-  // }
+  if (_state == "observe") {
+    // Solo mirar al jugador
+    moving = false
+    if (guy_x > x) {
+      _sprite_direction = "Right"
+    } else {
+      _sprite_direction = "Left"
+    }
+    if (_state_timer == 0) {
+      _state = "seek"
+      _state_timer = 120 // buscar durante 2 segundos (120 frames)
+    }
+    return
+  }
+
+  if (_state == "seek") {
+    // Buscar al jugador
+    moving = true
+    if (guy_x > x) {
+      _sprite_direction = "Right"
+      x = Math.min(x + 2, WIDTH - _width)
+    } else {
+      _sprite_direction = "Left"
+      x = Math.max(x - 2, 0)
+    }
+    if (_state_timer == 0) {
+      _state = "idle"
+      _state_timer = 60 // quedarse quieto 1 segundo (60 frames)
+      moving = false
+    }
+    return
+  }
+
+  // Estado idle o inicial
+  moving = false
+  if (distance_to_guy <= 20) {
+    // Si esta muy cerca, huir en direccion opuesta
+    if (guy_x > x) {
+      _sprite_direction = "Left"
+    } else {
+      _sprite_direction = "Right"
+    }
+    _speed = 6
+    _state = "flee"
+    _state_timer = 180 // huir 3 segundos (180 frames)
+    return
+  }
+
+  // Si no esta cerca, mirar al jugador
+  if (guy_x > x) {
+    _sprite_direction = "Right"
+  } else {
+    _sprite_direction = "Left"
+  }
+}
+
+/*auto_move() {
+  var guy_x = Game.dude.x
+  var distance_to_guy = (guy_x - x).abs
+
+  // Comportamiento dependiendo de la distancia
+  if (distance_to_guy > 80) {
+    // Muy lejos: correr hacia el jugador
+    if (guy_x > x) {
+      _sprite_direction = "Right"
+    } else {
+      _sprite_direction = "Left"
+    }
+    _speed = 8  // correr
+  } else if (distance_to_guy > 50) {
+    // Lejos: caminar hacia el jugador
+    if (guy_x > x) {
+      _sprite_direction = "Right"
+    } else {
+      _sprite_direction = "Left"
+    }
+    _speed = 2  // caminar
+  } else if (distance_to_guy <= 20) {
+    // Muy cerca: alejarse rapido
+    if (guy_x > x) {
+      _sprite_direction = "Left"
+    } else {
+      _sprite_direction = "Right"
+    }
+    _speed = 3  // correr en sentido opuesto
+  } else {
+    // Zona media: comportamientos aleatorios
+    var accion = (Random.rand() * 4).floor
+    if (accion == 0) {
+      _sprite_direction = "Left"
+      _speed = 5
+    } else if (accion == 1) {
+      _sprite_direction = "Right"
+      _speed = 5
+    } else if (accion == 2) {
+      // Salta si hay gravedad o salto disponible
+      //if (is_on_ground) jump()  // asegurese de tener esto definido
+    } else {
+      // Se queda quieto un momento
+      moving = false
+      return
+    }
+  }
 
   // Movimiento con validacion de limites
   moving = true
@@ -133,7 +247,8 @@ auto_move() {
   } else {
     x = Math.max(x - _speed, 0)
   }
-}
+}*/
+
   physics() {
     /*vy = vy + _gravity
     y = y + vy
