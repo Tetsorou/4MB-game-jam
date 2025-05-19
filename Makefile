@@ -13,8 +13,8 @@ EDITOR_FILES = $(GAME_SRC_PATH)/level_editor.wren  \
 			$(GAME_SRC_PATH)/editor_input.wren \
 			$(GAME_SRC_PATH)/tiles.wren \
 			$(GAME_SRC_PATH)/physics.wren \
-			 $(GAME_SRC_PATH)/level_maker.wren \ 
-			 $(GAME_SRC_PATH)/enemy.wren 
+			$(GAME_SRC_PATH)/level_maker.wren \
+			$(GAME_SRC_PATH)/enemy.wren 
 				
 
 

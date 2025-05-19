@@ -1,3 +1,4 @@
+
 class Enemy {
   // Getters
   moving {_moving}
