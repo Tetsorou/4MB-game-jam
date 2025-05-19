@@ -1,16 +1,21 @@
 
-var TOOL = "" 
-var TILE_TYPE = ""
-var TILE_TYPE_MATERIAL = ""
+var TOOL = "PLACE"
+var TILE_INDEX = 0
+var MATERIAL_INDEX = 0
+var ID = 1
+var LAYER = 0
 
 class Player_input {
 
   static controls() {
     var a =""
-    if (Input.is_key_held(Input.get_keycode("P"))) {
+    if (Input.is_key_pressed(Input.get_keycode("P"))) {
         TOOL = "PLACE"
+        // System.print(Tiles.tile_materials)
+        System.print(Physics.id_position)
+        System.print(Physics.position)
+
     }
-   
     if (Input.is_key_held(Input.get_keycode("L"))) { //Safe Shutdown
       // LOGS.close()
       Level_maker.save_file()
@@ -19,133 +24,33 @@ class Player_input {
     }
     
     if (TOOL == "PLACE") {
-      if (Input.is_key_held(Input.get_keycode("A")) ) {
-          TILE_TYPE= "Floor"
-      } 
-      if (Input.is_key_held(Input.get_keycode("S")) ) {
-          TILE_TYPE= "Wall"
-      } 
-      if (Input.is_key_held(Input.get_keycode("D")) ) {
-          TILE_TYPE= "Ceiling"
-      } 
-      if (Input.is_key_held(Input.get_keycode("F")) ) {
-          TILE_TYPE= "Top_corner"
-      } 
-      if (Input.is_key_held(Input.get_keycode("G")) ) {
-          TILE_TYPE= "Bottom_corner"
-      } 
-      if (Input.is_key_held(Input.get_keycode("H")) ) {
-          TILE_TYPE= "Inside_corner"
-      } 
-      // System.print(TILE_TYPE)
-      // Tile_type_material
-      if (Input.is_key_held(Input.get_keycode("Q")) ) {
-          TILE_TYPE_MATERIAL = "GRASS"
-      } 
-      if (Input.is_key_held(Input.get_keycode("W"))) {
-          TILE_TYPE_MATERIAL = "BRICK"
-      } 
-      if (Input.is_key_held(Input.get_keycode("E")) ) {
-          TILE_TYPE_MATERIAL = "DIRT"
-      } 
-      // System.print(TILE_TYPE_MATERIAL)
-
-      //Generating the surfaces
-      if (Input.is_key_pressed(Keycodes.LEFT)) {
-        if (TILE_TYPE== "Ceiling") {
-          if (TILE_TYPE_MATERIAL == "GRASS") {
-              a = Ceiling.new(Ceiling.GRASS,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
-          if (TILE_TYPE_MATERIAL == "BRICK") {
-              a = Ceiling.new(Ceiling.BRICK,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
-          if (TILE_TYPE_MATERIAL == "DIRT") {
-                a = Ceiling.new(Ceiling.DIRT,Input.mouse_x(),Input.mouse_y())
-                a.draw()  
-          }
+        if (Input.is_key_pressed(Input.get_keycode("Q"))) {
+            TILE_INDEX = TILE_INDEX + 1 
         }
-        if (TILE_TYPE== "Floor") {
-          if (TILE_TYPE_MATERIAL == "GRASS") {
-              a = Floor.new(Floor.GRASS,Input.mouse_x(),Input.mouse_y())
-              System.print(a.surface)
-              a.draw()  
-          }
-          if (TILE_TYPE_MATERIAL == "BRICK") {
-              a = Floor.new(Floor.BRICK,Input.mouse_x(),Input.mouse_y())
-              a.draw()   
-          }
-          if (TILE_TYPE_MATERIAL == "DIRT") {
-              a = Floor.new(Floor.DIRT,Input.mouse_x(),Input.mouse_y())
-              a.draw()   
-          }
+        if (Input.is_key_pressed(Input.get_keycode("E"))) {
+            MATERIAL_INDEX = MATERIAL_INDEX + 1 
+            // System.print(MATERIAL_INDEX)
         }
-        if (TILE_TYPE== "Top_corner") {
-          if (TILE_TYPE_MATERIAL == "GRASS") {
-              a = Top_corner.new(Top_corner.GRASS,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
-          if (TILE_TYPE_MATERIAL == "BRICK") {
-              a = Top_corner.new(Top_corner.BRICK,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
-          if (TILE_TYPE_MATERIAL == "DIRT") {
-              a = Top_corner.new(Top_corner.DIRT,Input.mouse_x(),Input.mouse_y())
-              a.draw() 
-          }
+        if(TILE_INDEX >= Tiles.tile.count || TILE_INDEX < 0 ) {
+            TILE_INDEX = 0
         }
-        if (TILE_TYPE== "Bottom_corner") {
-          if (TILE_TYPE_MATERIAL == "GRASS") {
-              a = Bottom_corner.new(Bottom_corner.GRASS,Input.mouse_x(),Input.mouse_y())
-              a.draw()    
-          }
-          if (TILE_TYPE_MATERIAL == "BRICK") {
-              a = Bottom_corner.new(Bottom_corner.BRICK,Input.mouse_x(),Input.mouse_y())
-              a.draw()    
-          }
-          if (TILE_TYPE_MATERIAL == "DIRT") {
-            a = Bottom_corner.new(Bottom_corner.DIRT,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
+        if(MATERIAL_INDEX >= Tiles.tile_materials[Tiles.tile[TILE_INDEX]].count || MATERIAL_INDEX < 0 ) {
+            MATERIAL_INDEX = 0
         }
-        if (TILE_TYPE== "Inside_corner") {
-          if (TILE_TYPE_MATERIAL == "GRASS") {
-              a = Inside_corner.new(Inside_corner.GRASS,Input.mouse_x(),Input.mouse_y())
-              a.draw()  
-          }
-          if (TILE_TYPE_MATERIAL == "BRICK") {
-              a = Inside_corner.new(Inside_corner.BRICK,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
-          if (TILE_TYPE_MATERIAL == "DIRT") {
-              a = Inside_corner.new(Inside_corner.DIRT,Input.mouse_x(),Input.mouse_y())
-              a.draw()
-          }
+        if (Input.is_key_pressed(Keycodes.LEFT)) {
+            Physics.relative_id[ID]="%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])"
+            // System.print("%(Tiles.tile[TILE_INDEX])/%(Tiles.tile_materials[Tiles.tile[TILE_INDEX]][MATERIAL_INDEX])")
+            Physics.position[ID] = Vector.new((Input.mouse_x()/8).floor * 8, (Input.mouse_y()/8).floor * 8)
+            // System.print("mouse pos: %(Input.mouse_pos())")
+            if (Physics.id_position.containsKey("%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)")) {
+                Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"].insert(LAYER,ID)
+            } else {
+                Physics.id_position["%((Input.mouse_x()/8).floor * 8), %((Input.mouse_y()/8).floor * 8)"] = [ID]
+                // what happens when an empty layer sits in between say, layer 0 and 2
+            }
+            ID = ID + 1
         }
-        if (TILE_TYPE== "Wall") {
-          if (TILE_TYPE_MATERIAL == "GRASS") {
-              a = Wall.new(Wall.GRASS,Input.mouse_x(),Input.mouse_y())
-              a.draw()  
-          }
-          if (TILE_TYPE_MATERIAL == "BRICK") {
-                a = Wall.new(Wall.BRICK,Input.mouse_x(),Input.mouse_y())
-                a.draw()  
-          }
-          if (TILE_TYPE_MATERIAL == "DIRT") {
-              a = Wall.new(Wall.DIRT,Input.mouse_x(),Input.mouse_y())
-              a.draw()   
-          }
-        }
-        if (TILE_TYPE_MATERIAL && TILE_TYPE) {
-            BLOCK_MAP[a.surface] = "a=%(TILE_TYPE).new(%(TILE_TYPE).%(TILE_TYPE_MATERIAL),%(a.x),%(a.y))\n"   
-            POSITION_MAP[a.surface] = Vector.new(a.x,a.y)
-        }
-      } 
-            
     }
-
-   
-    
+            
   }
 }

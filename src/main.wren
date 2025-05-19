@@ -40,7 +40,8 @@ class Game {
   static init(args) {
     Engine.init(WIDTH, HEIGHT, TITLE)
      Draw.clear(Color.new(33,38,63))
-    
+     Tiles.init()
+    Level_test.init()
   }
 
   static tick(dt) {
@@ -79,7 +80,7 @@ class Game {
     //   floor.draw()
       // Level_maker.draw_from_map()
       
-      Level_test_1.level()
+      Level_test.draw_from_map()
        Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
        dude.draw(dude.current_sprite)
        enemy.draw(enemy.current_sprite) // Dibujar al enemigo
