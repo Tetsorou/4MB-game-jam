@@ -1,5 +1,5 @@
 
-class Enemy {
+class Enemy {//CRUD created red update delete 
   // Getters
   moving {_moving}
   sprite_path {_sprite_path}
@@ -73,7 +73,7 @@ class Enemy {
 
   draw(current_sprite_param) {
     if (!_sprite_map.containsKey(current_sprite_param)) {
-      System.print(current_sprite_param)
+      //System.print(current_sprite_param)
       _sprite_map[current_sprite_param] = Surface.new_from_png(current_sprite_param)
     }
     Surface.draw(_sprite_map[current_sprite_param], x, y, 1)

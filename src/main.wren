@@ -81,9 +81,9 @@ class Game {
       // Level_maker.draw_from_map()
       
       Level_test.draw_from_map()
-       Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
-       dude.draw(dude.current_sprite)
-       enemy.draw(enemy.current_sprite) // Dibujar al enemigo
+      Draw.text(0,0,"FPS:%(LAST_FPS)",255,255,255,255)
+      dude.draw(dude.current_sprite)
+      enemy.draw(enemy.current_sprite) // Dibujar al enemigo
       // Draw.line(WIDTH , 0, WIDTH, HEIGHT, 0,0,0,255)
     }
 }

@@ -18,6 +18,10 @@ class Guy {
   jump_force {_jump_force}
   current_sprite {_current_sprite}
   sprite_map {_sprite_map}
+  //_stepTimer
+
+
+
 
   //setters
   sprite_path=(value) {_path = value}  //animation variables
@@ -34,6 +38,8 @@ class Guy {
   current_sprite=(value) {_current_sprite = value}
   moving=(value) {_moving = value}
   //  sprite_map=(value) {_sprite_map = value}
+
+  
 
 construct new(x1,y1,width1,height1,path,smap) {
     _sprite_path = path
@@ -52,6 +58,8 @@ construct new(x1,y1,width1,height1,path,smap) {
     _sprite_direction="Right"
     _sprite_last = ""
     _sprite_map = {}
+    _step = Song.new("Songs/step.ogg")// Sonido de paso
+    //_stepTimer = 0
   }
 
   draw(current_sprite_param) {
@@ -62,6 +70,18 @@ construct new(x1,y1,width1,height1,path,smap) {
     }
     Surface.draw(sprite_map[current_sprite_param],x,y,1)
     
+  }
+
+  updateSound() {
+    if (moving) {
+      if (!_step.isPlaying) {
+        _step.play()
+      }
+    } else {
+      if (_step.isPlaying) {
+        _step.stop()
+      }
+    }
   }
 
   animation () {
@@ -91,6 +111,7 @@ construct new(x1,y1,width1,height1,path,smap) {
         sprite_index = 1
     }
     current_sprite = fiber.transfer(proceed)
+    updateSound()
   }
   physics() {
    

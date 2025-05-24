@@ -1,29 +1,25 @@
 POTETRE2D_PATH = exes
 GAME_SRC_PATH = src
 GAME_MAIN = game.wren
-#				
-GAME_FILES =   $(GAME_SRC_PATH)/dude.wren \
-			$(GAME_SRC_PATH)/main.wren     \
-			$(GAME_SRC_PATH)/player_input.wren \
-			$(GAME_SRC_PATH)/tiles.wren \
-       $(GAME_SRC_PATH)/enemy.wren \
-			 $(GAME_SRC_PATH)/level_test_1.wren
-	
+
+GAME_FILES =   $(GAME_SRC_PATH)/song.wren \
+            $(GAME_SRC_PATH)/tiles.wren \
+            $(GAME_SRC_PATH)/enemy.wren \
+            $(GAME_SRC_PATH)/level_test_1.wren \
+            $(GAME_SRC_PATH)/dude.wren \
+            $(GAME_SRC_PATH)/player_input.wren \
+            $(GAME_SRC_PATH)/main.wren
+
 EDITOR_FILES = $(GAME_SRC_PATH)/level_editor.wren  \
-			$(GAME_SRC_PATH)/editor_input.wren \
-			$(GAME_SRC_PATH)/tiles.wren \
-			$(GAME_SRC_PATH)/physics.wren \
-			$(GAME_SRC_PATH)/level_maker.wren \
-			$(GAME_SRC_PATH)/enemy.wren 
-				
-
-
-
-			 
-
-			  
+            $(GAME_SRC_PATH)/editor_input.wren \
+            $(GAME_SRC_PATH)/tiles.wren \
+            $(GAME_SRC_PATH)/physics.wren \
+            $(GAME_SRC_PATH)/level_maker.wren \
+            $(GAME_SRC_PATH)/song.wren \
+            $(GAME_SRC_PATH)/enemy.wren 
 
 ASSETS = $(GAME_SRC_PATH)/sprites/*
+AUDIO_ASSETS = $(GAME_SRC_PATH)/Songs/*
 
 # Check OS assume unix like
 OS = $(shell uname -s)
@@ -35,7 +31,6 @@ endif
 POTETRE2D_EXE_FULL_PATH = $(shell pwd)/$(POTETRE2D_EXE)
 
 # Get compression TOOL
-# TOOL/data_compress.*
 COMPRESSION_TOOL = $(shell find $(POTETRE2D_PATH)/tools/ -name "data_compress*")
 ifeq ($(COMPRESSION_TOOL), )
 $(info [WARNING] Compression TOOL not found! (make TOOLs))
@@ -48,13 +43,14 @@ all: package
 amalgamate:
 	@echo " ** Amalgamating..."
 	@mkdir -p build
-	cat $(GAME_FILES) > build/$(GAME_MAIN)
+	@cat $(GAME_FILES) > build/$(GAME_MAIN)
 	@echo " == Done! =="
 	@echo " ** Result: build/$(GAME_MAIN) **"
+
 editor_amalgamate:
 	@echo " ** Amalgamating..."
 	@mkdir -p build
-	cat $(EDITOR_FILES) > build/$(GAME_MAIN)
+	@cat $(EDITOR_FILES) > build/$(GAME_MAIN)
 	@echo " == Done! =="
 	@echo " ** Result: build/$(GAME_MAIN) **"
 
@@ -66,30 +62,35 @@ package: clean amalgamate
 	@echo " ** Copying assets..."
 	@cp -r $(ASSETS) build/
 	@echo " ** Stripping..."
-	@echo "got here"
-	@$(POTETRE2D_EXE_FULL_PATH) tools/compact.wren build/$(GAME_MAIN) small_$(GAME_MAIN)
-	@echo " ** Compressing game..."_$(GAME_MAIN) build/_game.wren
-	
+	@echo " ** Compressing game: build/$(GAME_MAIN) → build/small_$(GAME_MAIN)"
+	@$(POTETRE2D_EXE_FULL_PATH) tools/compact.wren build/$(GAME_MAIN) build/small_$(GAME_MAIN)
 	@$(RM) build/$(GAME_MAIN)
-	@mv small_$(GAME_MAIN) build/
+	@mv build/small_$(GAME_MAIN) build/
 	@echo -n " ** Size of the game before zipping (real size): "
 	@du -h build/ | cut -f1
 	@echo " ** Zipping..."
-	@cd build;zip -r game.zip . > /dev/null
+	@cd build; zip -r game.zip . > /dev/null
 	@echo " ** Result: build/game.zip"
 	@echo -n " ** Zip size: "
 	@du -h build/game.zip | cut -f1
+
 run: clean amalgamate
-	cp -r $(ASSETS) build/
-	cd build;$(POTETRE2D_EXE_FULL_PATH) game.wren
+	@mkdir -p build
+	@cp -r $(ASSETS) build/
+	@cp -r $(GAME_SRC_PATH)/Songs build/
+	@cd build; $(POTETRE2D_EXE_FULL_PATH) game.wren
 
 editor: clean editor_amalgamate
-	cp -r $(ASSETS) build/
-	cd build;$(POTETRE2D_EXE_FULL_PATH) game.wren
-correr: clean amalgamate
-	cp -r $(ASSETS) build/
-	cd build;$(shell pwd)/$(POTETRE2D_PATH)/potetre2d.exe game.wren
-clean:
-	$(RM) -rf build
+	@mkdir -p build
+	@cp -r $(ASSETS) build/
+	@cd build; $(POTETRE2D_EXE_FULL_PATH) game.wren
 
-.PHONY: all release run
+correr: clean amalgamate
+	@mkdir -p build
+	@cp -r $(ASSETS) build/
+	@cd build; $(shell pwd)/$(POTETRE2D_PATH)/potetre2d.exe game.wren
+
+clean:
+	@$(RM) -rf build
+
+.PHONY: all release run editor clean correr

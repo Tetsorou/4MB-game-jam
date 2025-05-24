@@ -40,9 +40,6 @@ OUTPUT.write("}\n")
             for (map in Physics.relative_id) {
              Surface.draw(Tiles.all_sprites[map.value], Physics.position[map.key].x  ,Physics.position[map.key].y ,255)
             }
-        }
-        
+        }    
     }
-
-
 }
