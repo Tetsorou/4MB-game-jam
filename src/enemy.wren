@@ -34,8 +34,6 @@ class Enemy {//CRUD created red update delete
   jump_force=(value) {_jump_force = value}
   current_sprite=(value) {_current_sprite = value}
   moving=(value) {_moving = value}
-
-  sprite_last_dir {_sprite_last_dir}
   sprite_last_dir=(value) {_sprite_last_dir = value}
 
 
