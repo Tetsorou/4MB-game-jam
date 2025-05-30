@@ -4,9 +4,9 @@ GAME_MAIN = game.wren
 
 GAME_FILES =   $(GAME_SRC_PATH)/song.wren \
             $(GAME_SRC_PATH)/tiles.wren \
-            $(GAME_SRC_PATH)/enemy.wren \
             $(GAME_SRC_PATH)/level_test_1.wren \
             $(GAME_SRC_PATH)/dude.wren \
+			$(GAME_SRC_PATH)/enemy.wren \
             $(GAME_SRC_PATH)/player_input.wren \
             $(GAME_SRC_PATH)/main.wren
 

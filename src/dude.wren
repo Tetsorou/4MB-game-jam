@@ -18,6 +18,7 @@ class Guy {
   jump_force {_jump_force}
   current_sprite {_current_sprite}
   sprite_map {_sprite_map}
+  direction { _sprite_direction }
   //_stepTimer
 
 
